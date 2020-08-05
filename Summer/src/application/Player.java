@@ -1,5 +1,8 @@
 package application;
 
-public class Player extends Entity{
+public class Player{
+	private String name;
+	private int score;
+	private int lives;
 	
 }

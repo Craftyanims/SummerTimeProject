@@ -1,5 +1,5 @@
 package application;
 
-public class Enemy extends Entity{
+public class Enemy{
 
 }
