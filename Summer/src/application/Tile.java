@@ -1,14 +1,14 @@
 package application;
 
 public class Tile {
-	String ID; //normal, speedUp or speedDown
-	int x; //x position on grid
-	int y; //y position on grid
-	boolean canOverlap = false;
-	SpeedUp powerup; // powerup
-	SpeedDown trap; // trap
-	boolean hasTrap; //does tile have trap on it
-	boolean hasPowerUp; //does tile have powerup on it
+	private String ID; //normal, wall, speedUp or speedDown
+	private int x; //x position on grid
+	private int y; //y position on grid
+	private boolean canOverlap = false;
+	private SpeedUp powerup; // powerup
+	private SpeedDown trap; // trap
+	private boolean hasTrap; //does tile have trap on it
+	private boolean hasPowerUp; //does tile have powerup on it
 	
 	//------------------------Constructors---------------------------
 	/**
@@ -69,23 +69,62 @@ public class Tile {
 	}
 	
 	//------------------------Getters and Setters---------------------
-	
-	public void getID(String id) {
-		id = ID;
+	public String getID() {
+		return ID;
 	}
 	
-	public void getPos(int X, int Y) {
-		X = x;
-		Y = y;
+	public void setID(String id) {
+		this.ID = id;
 	}
 	
-	public void getEvent(boolean activeTrap, boolean activePowerUp) {
-		activeTrap = hasTrap;
-		activePowerUp = hasPowerUp;
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public int[] getPos() {
+		int[] temp = new int[2];
+		temp[0] = x;
+		temp[1] = y;
+		return temp;
+	}
+	
+	public void setPos (int[] pos) {
+		pos[0] = this.x;
+		pos[1] = this.y;
+	}
+
+	public boolean isHasTrap() {
+		return hasTrap;
+	}
+
+	public void setHasTrap(boolean hasTrap) {
+		this.hasTrap = hasTrap;
+	}
+
+	public boolean isHasPowerUp() {
+		return hasPowerUp;
+	}
+
+	public void setHasPowerUp(boolean hasPowerUp) {
+		this.hasPowerUp = hasPowerUp;
 	}
 	
 	//------------------------Other Functions-------------------------
 	
+	
+
 	/**
 	 * clears the trap/powerup from the tile
 	 */
@@ -95,5 +134,15 @@ public class Tile {
 		boolean hasTrap = false;
 		boolean hasPowerUp = false;
 	};
+	
+	/**
+	 * prints representation of tile for print console
+	 * @return
+	 */
+	
+	String print() {
+		//return "[" + x + "," + y + "]";
+		return "[" + this.ID + "]";
+	}
 	
 }
