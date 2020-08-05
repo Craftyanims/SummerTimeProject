@@ -22,12 +22,10 @@ public class SpecialKeyboard {
 	}
 	
 	private static void onPress(KeyEvent e) {
-		System.out.println("adding: "+e.getCode());
 		if(!activeLists.contains(e.getCode())) activeLists.add(e.getCode());
 	}
 	
 	private static void onRelease(KeyEvent e) {
-		System.out.println("removing: "+e.getCode());
 		activeLists.remove(e.getCode());
 		
 	}
