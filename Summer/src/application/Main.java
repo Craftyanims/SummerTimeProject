@@ -34,13 +34,7 @@ public class Main extends Application {
 	}
 	
 	public void update() {
-		System.out.println(SpecialKeyboard.activeLists.toString());
-		if(SpecialKeyboard.checkKey(KeyCode.A)) {
-			System.out.println("AAAAAA");
-		}
-		if(SpecialKeyboard.checkKey(KeyCode.B)) {
-			System.out.println("BBBBB");
-		}
+
 		
 	}
 	
