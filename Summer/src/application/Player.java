@@ -8,6 +8,8 @@ public class Player{
 	private int score;
 	private int lives;
 	private int speed;
+	private int x;
+	private int y;
 	private Map map;
 	private KeyCode left;
 	private KeyCode right;
@@ -91,7 +93,26 @@ public class Player{
 		this.down = down;
 	}
 
-	//-----------------------------------------------Constructors-------------------------------------------------------
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		if (x >= 0 && x <= 10) {
+			//if (map.checkTile();)
+		}
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	//-----------------------------------------------Constructor-------------------------------------------------------
 	/**
 	 * Create a Player with a specific name
 	 * @param name
@@ -101,7 +122,7 @@ public class Player{
 		setScore(0);
 		setLives(3);
 		//TODO: Set speed
-		//TODO: Map
+		//TODO: Map position
 		setLeft(KeyCode.A);
 		setRight(KeyCode.D);
 		setUp(KeyCode.W);
@@ -110,15 +131,23 @@ public class Player{
 	
 	//----------------------------------------------------Methods-------------------------------------------------------
 	/**
-	 * Returns a boolean to represent whether a player is dead
-	 * @return true is the player is dead and false otherwise
+	 * Returns a boolean to represent whether a player is out of lives
+	 * @return true if the player is permanently dead and false otherwise
 	 */
-	public boolean isDead() {
+	public boolean isPermDead() {
 		if(lives == 0) {
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * Returns a boolean to represent whether a player should lose a life
+	 * @return true if the player is on the same tile as the enemy
+	 */
+//	public boolean isDead() {
+//		if()
+//	}
 	
 	/**
 	 * Decreases the player's speed by a specified value
@@ -127,6 +156,15 @@ public class Player{
 	public void slow(int value) {
 		setSpeed(speed - value);
 	}
+	
+	/**
+	 * Will save the palyer's score
+	 */
+	public void saveScore() {
+		
+	}
+	
+	//public void respawn
 	
 	
 	
