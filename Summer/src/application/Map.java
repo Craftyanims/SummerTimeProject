@@ -9,12 +9,55 @@ public class Map {
 	Player player; //the player, duh
 	//Enemy boss; //the level's boss (only one level so far)
 	
+	//------------------------Constructors---------------------------
+	
+	/**
+	 * creates a blank Map Object
+	 */
+	Map() {
+		grid.add(new ArrayList<Tile>());
+		grid.get(0).set(0, new Tile());
+	};
+	
+	/**
+	 * creates an empty map of specified size with empty Tiles
+	 * @param maxX: how wide the map is
+	 * @param maxY: how tall the map is
+	 */
+	Map(int maxX, int maxY) {
+		
+		for (int i = 0; i  < maxY; i++) {
+			grid.add(new ArrayList<Tile>());
+		}
+		
+		for (int i = 0; i < maxY; i++) {
+			for (int j = 0; j < maxX; j++) {
+				grid.get(i).set(j, new Tile());
+			}
+		}
+		
+	};
+	
+	//------------------------Getters and Setters---------------------
+	
+	
+	
+	
+	//------------------------Other Functions-------------------------
+	
 	/**
 	 * updates the map everytime the player or enemy moves
 	 * will call other update functions to check and update data accordingly
 	 * 
 	 */
 	void update() {
+		
+		// first check tile for overlap
+		checkTile();
+		
+		//if player goes on tile with trap or powerup then update player speed accordingly
+		updateTrap();
+		updatePowerUp();
 		
 	};
 	
@@ -37,12 +80,18 @@ public class Map {
 	 */
 	void checkTile() {
 		
+		
+		//if tile has trap/powerup then trigger tile
+		//triggerTile();
+		
 	};
 	
 	/**
 	 * activates trap/powerup on tile then calls clear() on tile
 	 */
-	void triggerTile() {
+	void triggerTile(Tile tile) {
+		
+		tile.clear();
 		
 	};
 	
