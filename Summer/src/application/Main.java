@@ -1,3 +1,4 @@
+
 package application;
 	
 import java.util.Timer;
@@ -22,10 +23,16 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
-
 	
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		testJunk();
+		
+	
+	}
+	
+	public static void testJunk() {
+		Map test = new Map(10,10);
+		test.levelOne();
 	}
 }
