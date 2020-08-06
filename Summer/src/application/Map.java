@@ -1,13 +1,13 @@
 package application;
 
-import java.util.ArrayList;
+import javafx.scene.layout.Pane;
 
-public class Map {
+public class Map extends Pane{
 	private Tile[][] grid;
 	private Tile[] speedUps;
 	private Tile[] speedDowns;
-	private Player player; //the player, duh
-	private Enemy enemy; //the level's boss
+	private Player player; //the player, duh (not needed?)
+	private Enemy enemy; //the level's boss (not needed?)
 	
 	//------------------------Constructors---------------------------
 	
@@ -127,7 +127,6 @@ public class Map {
 	 * activates trap/powerup on tile then calls clear() on tile
 	 */
 	void triggerTile(Tile tile) {
-		
 		tile.clear();
 		
 	};
@@ -136,7 +135,7 @@ public class Map {
 	 * generates walls for level one then prints out to console
 	 */
 	
-	void levelOne() {
+	void levelOne() { //TODO: create a list of coords
 		grid[0][5].setID("Wall");
 		grid[0][6].setID("Wall");
 		grid[1][1].setID("Wall");

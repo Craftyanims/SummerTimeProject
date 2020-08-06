@@ -1,12 +1,13 @@
 package application;
 
+//Import Rectangle (make sure its javafx)
+
 public class Tile {
 	private String ID; //normal, wall, speedUp or speedDown
 	private int x; //x position on grid
 	private int y; //y position on grid
-	private boolean canOverlap = false;
-	private SpeedUp powerup; // powerup
-	private SpeedDown trap; // trap
+	private boolean canOverlap = false; // for walls
+	private Interaction inter; //for traps and powerups
 	private boolean hasTrap; //does tile have trap on it
 	private boolean hasPowerUp; //does tile have powerup on it
 	
@@ -24,7 +25,7 @@ public class Tile {
 	
 	/**
 	 * creates a normal Tile object
-	 * @param id: tile is blank 
+	 * @param id: tile is blank
 	 * @param X: x position on the grid
 	 * @param Y: y position on the grid
 	 */
@@ -37,35 +38,19 @@ public class Tile {
 	}
 	
 	/**
-	 * creates a Tile object with powerup
+	 * creates a Tile object with interaction
 	 * @param id: tile has powerup
 	 * @param X: x position on the grid
 	 * @param Y: y position on the grid
-	 * @param speedup: the powerup on the Tile
+	 * @param interaction: either trap or powerup
 	 */
-	Tile(String id, int X, int Y, SpeedUp speedup) {
+	Tile(String id, int X, int Y, Interaction interaction) {
 		ID = id;
 		x = X;
 		y= Y;
 		hasTrap = false;
 		hasPowerUp = true;
-		powerup = speedup;
-	}
-	
-	/**
-	 * creates a Tile object with trap
-	 * @param id: tile has trap
-	 * @param X: x position on the grid
-	 * @param Y: y position on the grid
-	 * @param speed_down: the trap on the tile
-	 */
-	Tile(String id, int X, int Y, SpeedDown speed_down) {
-		ID = id;
-		x = X;
-		y= Y;
-		hasTrap = true;
-		hasPowerUp = false;
-		trap = speed_down;
+		inter = interaction;
 	}
 	
 	//------------------------Getters and Setters---------------------
@@ -129,8 +114,7 @@ public class Tile {
 	 * clears the trap/powerup from the tile
 	 */
 	void clear() {
-		SpeedUp powerup;
-		SpeedDown trap;
+		this.setID("____");
 		boolean hasTrap = false;
 		boolean hasPowerUp = false;
 	};
