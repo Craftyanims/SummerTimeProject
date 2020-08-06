@@ -1,13 +1,13 @@
 package application;
 
-import java.util.ArrayList;
+import javafx.scene.layout.Pane;
 
-public class Map {
-	ArrayList<ArrayList<Tile>> grid = new ArrayList<ArrayList<Tile>>(); //grid of Tiles
-	ArrayList<SpeedUp> speedUps = new ArrayList<SpeedUp>(); //List of Tiles with speedUps
-	ArrayList<SpeedDown> speedDowns= new ArrayList<SpeedDown>(); //List of Tiles with speedDowns
-	Player player; //the player, duh
-	//Enemy boss; //the level's boss (only one level so far)
+public class Map extends Pane{
+	private Tile[][] grid;
+	private Tile[] speedUps;
+	private Tile[] speedDowns;
+	private Player player; //the player, duh (not needed?)
+	private Enemy enemy; //the level's boss (not needed?)
 	
 	//------------------------Constructors---------------------------
 	
@@ -15,33 +15,70 @@ public class Map {
 	 * creates a blank Map Object
 	 */
 	Map() {
-		grid.add(new ArrayList<Tile>());
-		grid.get(0).set(0, new Tile());
+		grid = new Tile[0][0];
+		speedUps = new Tile[0];
+		speedDowns = new Tile[0];
 	};
 	
 	/**
-	 * creates an empty map of specified size with empty Tiles
+	 * creates an empty map of specified size with no walls
 	 * @param maxX: how wide the map is
 	 * @param maxY: how tall the map is
 	 */
 	Map(int maxX, int maxY) {
-		
-		for (int i = 0; i  < maxY; i++) {
-			grid.add(new ArrayList<Tile>());
-		}
-		
+		grid = new Tile[maxX][maxY];
 		for (int i = 0; i < maxY; i++) {
 			for (int j = 0; j < maxX; j++) {
-				grid.get(i).set(j, new Tile());
+					grid[i][j] = new Tile("    ", i, j);
 			}
 		}
-		
 	};
 	
 	//------------------------Getters and Setters---------------------
 	
+	public Tile[][] getGrid() {
+		return grid;
+	}
 	
+	public void setGrid(Tile[][] grid) {
+		this.grid = grid;
+	}
 	
+	public Tile[] getSpeedUps() {
+		return speedUps;
+	}
+	
+	public void setSpeedUps(Tile[] speedUps) {
+		this.speedUps = speedUps;
+	}
+	
+	public Tile[] getSpeedDowns() {
+		return speedDowns;
+	}
+	
+	public void setSpeedDowns(Tile[] speedDowns) {
+		this.speedDowns = speedDowns;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
+	public Enemy getEnemy() {
+		return enemy;
+	}
+	
+	public void setEnemy(Enemy enemy) {
+		this.enemy = enemy;
+	}
+	
+	public Tile getTile(int x, int y) {
+		return grid[x][y];
+	}
 	
 	//------------------------Other Functions-------------------------
 	
@@ -61,6 +98,7 @@ public class Map {
 		
 	};
 	
+
 	/**
 	 * updates the players speed (down)
 	 */
@@ -80,7 +118,6 @@ public class Map {
 	 */
 	void checkTile() {
 		
-		
 		//if tile has trap/powerup then trigger tile
 		//triggerTile();
 		
@@ -90,10 +127,72 @@ public class Map {
 	 * activates trap/powerup on tile then calls clear() on tile
 	 */
 	void triggerTile(Tile tile) {
-		
 		tile.clear();
 		
 	};
+	
+	/**
+	 * generates walls for level one then prints out to console
+	 */
+	
+	void levelOne() { //TODO: create a list of coords
+		grid[0][5].setID("Wall");
+		grid[0][6].setID("Wall");
+		grid[1][1].setID("Wall");
+		grid[1][2].setID("Wall");
+		grid[1][3].setID("Wall");
+		grid[1][8].setID("Wall");
+		grid[2][3].setID("Wall");
+		grid[2][5].setID("Wall");
+		grid[2][7].setID("Wall");
+		grid[2][8].setID("Wall");
+		grid[3][1].setID("Wall");
+		grid[3][5].setID("Wall");
+		grid[3][7].setID("Wall");
+		grid[4][1].setID("Wall");
+		grid[4][2].setID("Wall");
+		grid[4][3].setID("Wall");
+		grid[4][5].setID("Wall");
+		grid[4][7].setID("Wall");
+		grid[4][9].setID("Wall");
+		grid[5][3].setID("Wall");
+		grid[5][7].setID("Wall");
+		grid[5][9].setID("Wall");
+		grid[6][1].setID("Wall");
+		grid[6][3].setID("Wall");
+		grid[6][4].setID("Wall");
+		grid[6][5].setID("Wall");
+		grid[6][6].setID("Wall");
+		grid[6][7].setID("Wall");
+		grid[6][9].setID("Wall");
+		grid[7][1].setID("Wall");
+		grid[8][1].setID("Wall");
+		grid[8][2].setID("Wall");
+		grid[8][3].setID("Wall");
+		grid[8][5].setID("Wall");
+		grid[8][6].setID("Wall");
+		grid[8][7].setID("Wall");
+		grid[8][8].setID("Wall");
+		
+		print();
+	}
+	
+	
+	/**
+	 * prints map to console
+	 */
+	
+	void print() {
+		
+		for (int i = 0; i < grid.length; i++) {
+			System.out.println();
+			for (int j = 0; j < grid[0].length; j++) {
+				System.out.print(grid[i][j].print() + " ");
+			}
+		}
+		
+	}
+	
 	
 	
 }
