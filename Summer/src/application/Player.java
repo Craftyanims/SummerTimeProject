@@ -112,7 +112,7 @@ public class Player{
 		this.y = y;
 	}
 
-	//-----------------------------------------------Constructor-------------------------------------------------------
+	//-----------------------------------------------Constructor--------------------------------------------------------
 	/**
 	 * Create a Player with a specific name
 	 * @param name
@@ -121,8 +121,9 @@ public class Player{
 		setName(name);
 		setScore(0);
 		setLives(3);
-		//TODO: Set speed
-		//TODO: Map position
+		//TODO:speed stuff
+		setX(0);
+		setY(0);
 		setLeft(KeyCode.A);
 		setRight(KeyCode.D);
 		setUp(KeyCode.W);
@@ -145,9 +146,12 @@ public class Player{
 	 * Returns a boolean to represent whether a player should lose a life
 	 * @return true if the player is on the same tile as the enemy
 	 */
-//	public boolean isDead() {
-//		if()
-//	}
+	public boolean isDead(Enemy enemy) {
+		if(enemy.getX() == x && enemy.getY() == y) {
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * Decreases the player's speed by a specified value
@@ -158,13 +162,33 @@ public class Player{
 	}
 	
 	/**
+	 * Decreases the player's life count by 1
+	 */
+	public void loseALife() {
+		setLives(lives - 1);
+	}
+	
+	/**
 	 * Will save the palyer's score
 	 */
 	public void saveScore() {
 		
 	}
 	
-	//public void respawn
+	/**
+	 * Checks if player has enough lives left to respawn and resets it values if it can
+	 * @return a string indicating if respawn is successful 
+	 */
+	public String respawn() {		
+		if ((lives - 1) > 0) {
+			loseALife();
+			setX(0);
+			setY(0);
+			//to annoy jeff by not using boolean
+			return "true";
+		}
+		return "false";
+	}
 	
 	
 	

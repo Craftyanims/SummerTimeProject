@@ -1,11 +1,55 @@
 package application;
 
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
-
-public class Enemy{
+public class Enemy {
+	// ------------------------------------Initializing the necessary variables------------------------------------------
 	private int speed;
 	private Map map;
-	private ArrayList<Point2D> pathPattern;
+	private int x;
+	private int y;
+	// TODO: path pattern
 
+	// -------------------------------------------Getters and Setters----------------------------------------------------
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	// -----------------------------------------------Constructor--------------------------------------------------------
+	/**
+	 * Create a Player with a specific name
+	 * 
+	 * @param name
+	 */
+	public Enemy() {
+		// TODO:speed stuff
+		setX(0);
+		setY(0);
+	}
 }
