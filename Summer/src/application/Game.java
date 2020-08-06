@@ -8,9 +8,11 @@ import javafx.scene.layout.BorderPane;
 public class Game extends Scene {
 
 	private AnimationTimer at;
+	private Map map;
 	Game() {
 		super(new BorderPane(), 400, 400);
 		initAnimationTimer();
+		map = new Map(10,10);
 		at.start();
 		SpecialKeyboard.init(this);
 	}
