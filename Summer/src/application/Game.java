@@ -10,19 +10,16 @@ public class Game extends Scene {
 
 	private AnimationTimer at;
 	private Map map;
-<<<<<<< HEAD
 	private Pane root;
-=======
->>>>>>> refs/heads/master
+
 	Game() {
 		super(new Pane(), 400, 400);
 		root = (Pane) getRoot();
 		initAnimationTimer();
 		map = new Map(10,10);
-<<<<<<< HEAD
+
 		root.getChildren().add(map);
-=======
->>>>>>> refs/heads/master
+
 		at.start();
 		SpecialKeyboard.init(this);
 	}
