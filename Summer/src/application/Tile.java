@@ -15,7 +15,7 @@ public class Tile {
 	/**
 	 * creates a blank Tile object
 	 */
-	Tile() {
+	public Tile() {
 		ID = "";
 		x = 0;
 		y= 0;
@@ -29,7 +29,7 @@ public class Tile {
 	 * @param X: x position on the grid
 	 * @param Y: y position on the grid
 	 */
-	Tile(String id, int X, int Y) {
+	public Tile(String id, int X, int Y) {
 		ID = id;
 		x = X;
 		y= Y;
@@ -44,7 +44,7 @@ public class Tile {
 	 * @param Y: y position on the grid
 	 * @param interaction: either trap or powerup
 	 */
-	Tile(String id, int X, int Y, Interaction interaction) {
+	public Tile(String id, int X, int Y, Interaction interaction) {
 		ID = id;
 		x = X;
 		y= Y;
@@ -113,7 +113,7 @@ public class Tile {
 	/**
 	 * clears the trap/powerup from the tile
 	 */
-	void clear() {
+	public void clear() {
 		this.setID("____");
 		boolean hasTrap = false;
 		boolean hasPowerUp = false;
@@ -124,7 +124,7 @@ public class Tile {
 	 * @return
 	 */
 	
-	String print() {
+	public String print() {
 		//return "[" + x + "," + y + "]";
 		return "[" + this.ID + "]";
 	}

@@ -14,7 +14,7 @@ public class Map extends Pane{
 	/**
 	 * creates a blank Map Object
 	 */
-	Map() {
+	public Map() {
 		grid = new Tile[0][0];
 		speedUps = new Tile[0];
 		speedDowns = new Tile[0];
@@ -25,7 +25,7 @@ public class Map extends Pane{
 	 * @param maxX: how wide the map is
 	 * @param maxY: how tall the map is
 	 */
-	Map(int maxX, int maxY) {
+	public Map(int maxX, int maxY) {
 		grid = new Tile[maxX][maxY];
 		for (int i = 0; i < maxY; i++) {
 			for (int j = 0; j < maxX; j++) {
@@ -87,7 +87,7 @@ public class Map extends Pane{
 	 * will call other update functions to check and update data accordingly
 	 * 
 	 */
-	void update() {
+	public void update() {
 		
 		// first check tile for overlap
 		checkTile();
@@ -102,21 +102,21 @@ public class Map extends Pane{
 	/**
 	 * updates the players speed (down)
 	 */
-	void updateTrap() {
+	public void updateTrap() {
 		
 	};
 	
 	/**
 	 * updates the players speed (up)
 	 */
-	void updatePowerUp() {
+	public void updatePowerUp() {
 		
 	};
 	
 	/**
 	 * checks whether player can move on the tile (cannot move on same tile as enemy)
 	 */
-	void checkTile() {
+	public void checkTile() {
 		
 		//if tile has trap/powerup then trigger tile
 		//triggerTile();
@@ -126,7 +126,7 @@ public class Map extends Pane{
 	/**
 	 * activates trap/powerup on tile then calls clear() on tile
 	 */
-	void triggerTile(Tile tile) {
+	public void triggerTile(Tile tile) {
 		tile.clear();
 		
 	};
@@ -135,7 +135,7 @@ public class Map extends Pane{
 	 * generates walls for level one then prints out to console
 	 */
 	
-	void levelOne() { //TODO: create a list of coords
+	public void levelOne() { //TODO: create a list of coords
 		grid[0][5].setID("Wall");
 		grid[0][6].setID("Wall");
 		grid[1][1].setID("Wall");
@@ -182,7 +182,7 @@ public class Map extends Pane{
 	 * prints map to console
 	 */
 	
-	void print() {
+	public void print() {
 		
 		for (int i = 0; i < grid.length; i++) {
 			System.out.println();
