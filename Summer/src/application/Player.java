@@ -117,13 +117,14 @@ public class Player{
 	 * Create a Player with a specific name
 	 * @param name
 	 */
-	public Player(String name) {
+	public Player(Map map, String name) {
 		setName(name);
 		setScore(0);
 		setLives(3);
 		//TODO:speed stuff
 		setX(0);
 		setY(0);
+		this.map = map;
 		setLeft(KeyCode.A);
 		setRight(KeyCode.D);
 		setUp(KeyCode.W);
@@ -172,24 +173,26 @@ public class Player{
 	 * Will save the palyer's score
 	 */
 	public void saveScore() {
-		
+	//TODO:	
 	}
 	
 	/**
 	 * Checks if player has enough lives left to respawn and resets it values if it can
-	 * @return a string indicating if respawn is successful 
+	 * @return true if respawn is successful and false otherwise
 	 */
-	public String respawn() {		
+	public boolean respawn() {		
 		if ((lives - 1) > 0) {
 			loseALife();
 			setX(0);
 			setY(0);
-			//to annoy jeff by not using boolean
-			return "true";
+			return true;
 		}
-		return "false";
+		return false;
 	}
 	
+	public void update() {
+		
+	}
 	
 	
 }
