@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Game extends Scene {
 	final public static int WIDTH = 400;
@@ -19,7 +21,7 @@ public class Game extends Scene {
 	Game() {
 		super(new Pane(), WIDTH, HEIGHT);
 		root = (Pane) getRoot();
-		
+
 		initAnimationTimer();
 
 		init();
@@ -27,27 +29,31 @@ public class Game extends Scene {
 		at.start();
 		SpecialKeyboard.init(this);
 	}
-	
+
 	private void init() {
+		map = new Map(10, 10);
+		player = new Player("bob",map);
+		root.getChildren().add(map);
+//		root.getChildren().add(player);
+		// asd
 
 	}
-	
+
 	private void initAnimationTimer() {
-		 at = new AnimationTimer() {
-				
-				@Override
-				public void handle(long arg0) {
-					update();
-				//	player.update();
+		at = new AnimationTimer() {
+
+			@Override
+			public void handle(long arg0) {
+				update();
+				// player.update();
 //					enemy.update();
-					
-				}
-			};
+
+			}
+		};
 	}
-	
+
 	public void update() {
 
 	}
-
 
 }
