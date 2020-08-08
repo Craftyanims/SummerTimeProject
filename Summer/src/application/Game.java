@@ -33,6 +33,7 @@ public class Game extends Scene {
 		player = new Player(map,"bob");
 		root.getChildren().add(map);
 		root.getChildren().add(player);
+		//asd
 		
 	}
 	
