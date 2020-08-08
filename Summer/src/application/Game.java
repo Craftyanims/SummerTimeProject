@@ -11,6 +11,8 @@ import javafx.scene.shape.Rectangle;
 public class Game extends Scene {
 	final public static int WIDTH = 400;
 	final public static int HEIGHT = 400;
+	final public static int GRID_X = 10;
+	final public static int GRID_Y = 10;
 
 	private AnimationTimer at;
 	private Map map;
@@ -33,8 +35,10 @@ public class Game extends Scene {
 	private void init() {
 		map = new Map(10, 10);
 		player = new Player("bob",map);
+		enemy = new Enemy("Jack-e",map);
 		root.getChildren().add(map);
-//		root.getChildren().add(player);
+		root.getChildren().add(player);
+		root.getChildren().add(enemy);
 		// asd
 
 	}
@@ -45,14 +49,13 @@ public class Game extends Scene {
 			@Override
 			public void handle(long arg0) {
 				update();
-				// player.update();
-//					enemy.update();
 
 			}
 		};
 	}
 
 	public void update() {
+		 player.update(enemy);
 
 	}
 
