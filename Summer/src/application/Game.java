@@ -29,13 +29,7 @@ public class Game extends Scene {
 	}
 	
 	private void init() {
-		map = new Map(10,10);
-		player = new Player("bob", map);
-    enemy = new Enemy("bob slayer", map);
-		root.getChildren().add(map);
-		root.getChildren().add(player);
-		//asd
-		
+
 	}
 	
 	private void initAnimationTimer() {
