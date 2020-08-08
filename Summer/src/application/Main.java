@@ -28,7 +28,6 @@ public class Main extends Application {
 		testJunk();
 		launch(args);
 		
-	
 	}
 	
 	public static void testJunk() {

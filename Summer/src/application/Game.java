@@ -10,18 +10,26 @@ public class Game extends Scene {
 
 	private AnimationTimer at;
 	private Map map;
+	private Player player;
+	private Enemy enemy;
 	private Pane root;
 
 	Game() {
 		super(new Pane(), 400, 400);
 		root = (Pane) getRoot();
 		initAnimationTimer();
-		map = new Map(10,10);
 
+		init();
 		root.getChildren().add(map);
 
 		at.start();
 		SpecialKeyboard.init(this);
+	}
+	
+	private void init() {
+		map = new Map(10,10);
+		player = new Player("bob",map);
+		//enemy = new Enemy("bob",map);
 	}
 	
 	private void initAnimationTimer() {
@@ -30,6 +38,8 @@ public class Game extends Scene {
 				@Override
 				public void handle(long arg0) {
 					update();
+					player.update();
+//					enemy.update();
 					
 				}
 			};
