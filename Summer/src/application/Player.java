@@ -129,6 +129,7 @@ public class Player extends Rectangle{
 	 * @param map the map the player will exist on
 	 */
 	public Player(String name, Map map) {
+		super(0,0,20,20);
 		setName(name);
 		setScore(0);
 		setLives(3);
@@ -220,7 +221,7 @@ public class Player extends Rectangle{
 				nextX = gridX - 1;
 				Tile nextTile = grid[nextX][gridY];
 				if (nextTile.getID() == "Wall") {
-				System.out.println("Cannot Move: There is a wall");
+					System.out.println("Cannot Move: There is a wall");
 				}else {
 					gridX = nextX;
 					System.out.println("Successfully moved left");
@@ -236,7 +237,7 @@ public class Player extends Rectangle{
 				nextX = gridX + 1;
 				Tile nextTile = grid[nextX][gridY];
 				if (nextTile.getID() == "Wall") {
-				System.out.println("Cannot Move: There is a wall");
+					System.out.println("Cannot Move: There is a wall");
 				}else {
 					gridX = nextX;
 					System.out.println("Successfully moved right");
@@ -252,7 +253,7 @@ public class Player extends Rectangle{
 				nextY = gridY - 1;
 				Tile nextTile = grid[gridX][nextY];
 				if (nextTile.getID() == "Wall") {
-				System.out.println("Cannot Move: There is a wall");
+					System.out.println("Cannot Move: There is a wall");
 				}else {
 					gridY = nextY;
 					System.out.println("Successfully moved up");
@@ -268,7 +269,7 @@ public class Player extends Rectangle{
 				nextY = gridY + 1;
 				Tile nextTile = grid[gridX][nextY];
 				if (nextTile.getID() == "Wall") {
-				System.out.println("Cannot Move: There is a wall");
+					System.out.println("Cannot Move: There is a wall");
 				}else {
 					gridY = nextY;
 					System.out.println("Successfully moved down");
