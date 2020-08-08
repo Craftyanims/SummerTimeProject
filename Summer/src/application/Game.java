@@ -45,14 +45,13 @@ public class Game extends Scene {
 			@Override
 			public void handle(long arg0) {
 				update();
-				// player.update();
-//					enemy.update();
 
 			}
 		};
 	}
 
 	public void update() {
+		 player.update();
 
 	}
 
