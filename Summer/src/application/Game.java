@@ -29,7 +29,7 @@ public class Game extends Scene {
 	private void init() {
 		map = new Map(10,10);
 		player = new Player("bob",map);
-		//enemy = new Enemy("bob",map);
+		enemy = new Enemy("bob",map);
 	}
 	
 	private void initAnimationTimer() {

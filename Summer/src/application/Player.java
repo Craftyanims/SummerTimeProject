@@ -1,15 +1,16 @@
 package application;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.shape.Rectangle;
 
-public class Player{
+public class Player extends Rectangle{
 	//------------------------------------Initializing the necessary variables------------------------------------------
 	private String name;
 	private int score;
 	private int lives;
 	private int speed;
-	private int x;
-	private int y;
+	private int gridX;
+	private int gridY;
 	private Map map;
 	private KeyCode left;
 	private KeyCode right;
@@ -53,6 +54,25 @@ public class Player{
 		}
 	}
 	
+	public int getGridX() {
+		return gridX;
+	}
+
+	public void setGridX(int x) {
+		if (x >= 0 && x <= 10) {
+			//if (map.checkTile();)
+		}
+		gridX = x;
+	}
+
+	public int getGridY() {
+		return gridY;
+	}
+
+	public void setGridY(int y) {
+		this.gridY = y;
+	}
+	
 	public Map getMap() {
 		return map;
 	}
@@ -64,52 +84,33 @@ public class Player{
 	public KeyCode getLeft() {
 		return left;
 	}
-
+	
 	public void setLeft(KeyCode left) {
 		this.left = left;
 	}
-
+	
 	public KeyCode getRight() {
 		return right;
 	}
-
+	
 	public void setRight(KeyCode right) {
 		this.right = right;
 	}
-
+	
 	public KeyCode getUp() {
 		return up;
 	}
-
+	
 	public void setUp(KeyCode up) {
 		this.up = up;
 	}
-
+	
 	public KeyCode getDown() {
 		return down;
 	}
-
+	
 	public void setDown(KeyCode down) {
 		this.down = down;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		if (x >= 0 && x <= 10) {
-			//if (map.checkTile();)
-		}
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 	//-----------------------------------------------Constructor--------------------------------------------------------
@@ -123,8 +124,8 @@ public class Player{
 		setScore(0);
 		setLives(3);
 		//TODO:speed stuff
-		setX(0);
-		setY(0);
+		setGridX(0);
+		setGridY(0);
 		this.map = map;
 		setLeft(KeyCode.A);
 		setRight(KeyCode.D);
@@ -149,7 +150,7 @@ public class Player{
 	 * @return true if the player is on the same tile as the enemy
 	 */
 	public boolean isDead(Enemy enemy) {
-		if(enemy.getX() == x && enemy.getY() == y) {
+		if(enemy.getX() == gridX && enemy.getY() == gridY) {
 			return true;
 		}
 		return false;
@@ -184,14 +185,15 @@ public class Player{
 	public boolean respawn() {		
 		if ((lives - 1) > 0) {
 			loseALife();
-			setX(0);
-			setY(0);
+			setGridX(0);
+			setGridY(0);
 			return true;
 		}
 		return false;
 	}
 	
 	public void update() {
+		System.out.println("updating...");
 		
 	}
 	
