@@ -39,7 +39,7 @@ public class Game extends Scene {
 				public void handle(long arg0) {
 					update();
 					player.update();
-//					enemy.update();
+					//enemy.update();
 					
 				}
 			};

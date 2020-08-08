@@ -3,7 +3,7 @@ package application;
 import javafx.scene.shape.Rectangle;
 
 public class Enemy extends Rectangle{
-	// ------------------------------------Initializing the necessary variables------------------------------------------
+	//-------------------------------------Initializing the necessary variables------------------------------------------
 	private String name;
 	private int speed;
 	private int gridX;
@@ -11,7 +11,7 @@ public class Enemy extends Rectangle{
 	private Map map;
 	// TODO: path pattern
 
-	// -------------------------------------------Getters and Setters----------------------------------------------------
+	//--------------------------------------------Getters and Setters----------------------------------------------------
 	public String getName() {
 		return name;
 	}
@@ -53,7 +53,7 @@ public class Enemy extends Rectangle{
 		this.map = map;
 	}
 
-	// -----------------------------------------------Constructor--------------------------------------------------------
+	//------------------------------------------------Constructor--------------------------------------------------------
 	/**
 	 * Create a Player with a specific name
 	 * 
