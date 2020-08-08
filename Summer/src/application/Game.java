@@ -11,6 +11,8 @@ import javafx.scene.shape.Rectangle;
 public class Game extends Scene {
 	final public static int WIDTH = 400;
 	final public static int HEIGHT = 400;
+	final public static int GRID_X = 10;
+	final public static int GRID_Y = 10;
 
 	private AnimationTimer at;
 	private Map map;
