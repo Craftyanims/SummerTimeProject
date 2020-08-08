@@ -115,9 +115,10 @@ public class Player{
 	//-----------------------------------------------Constructor--------------------------------------------------------
 	/**
 	 * Create a Player with a specific name
-	 * @param name
+	 * @param name the player's specified name
+	 * @param map the map the player will exist on
 	 */
-	public Player(Map map, String name) {
+	public Player(String name, Map map) {
 		setName(name);
 		setScore(0);
 		setLives(3);
