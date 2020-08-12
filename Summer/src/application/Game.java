@@ -61,9 +61,23 @@ public class Game extends Scene {
 			}
 		};
 	}
+	
+	private void checkInteractions() {
+		int gridX = (int)player.getX()%39;
+		int gridY = (int)player.getY()%39;
+		for (Interaction i : inters) {
+			int tileX = (int)i.getX()%39;
+			int tileY = (int)i.getY()%39;
+			if(tileX == gridX && tileY == gridY) {
+				i.trigger(player);
+			}
+		}
+	}
 
 	public void update() {
 		player.update(enemy);
+		checkInteractions();
+		
 
 	}
 
