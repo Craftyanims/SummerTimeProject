@@ -33,7 +33,9 @@ public class Tile extends Rectangle{
 	 */
 	public Tile(String id, int X, int Y) {
 		super(X, Y, 39, 39);
-		if (id == "Wall") {
+		if (id == "Spawn") {
+			setFill(Color.rgb(0, 255, 0));
+		} else if (id == "Wall") {
 			setFill(Color.rgb(51, 26, 0));
 		} else {
 			setFill(Color.rgb(0, 102, 0));
@@ -69,7 +71,9 @@ public class Tile extends Rectangle{
 
 	public void setID(String id) {
 		this.ID = id;
-		if (id == "Wall") {
+		if (id == "Spawn") {
+			setFill(Color.rgb(0, 255, 0));
+		} else if (id == "Wall") {
 			setFill(Color.rgb(51, 26, 0));
 		} else {
 			setFill(Color.rgb(0, 102, 0));

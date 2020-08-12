@@ -9,6 +9,8 @@ import javafx.scene.shape.Rectangle;
 public class Map extends Pane {
 	private Tile[][] grid;
 	private Interaction[] inters;
+	private Tile playerSpawn;
+	private Tile enemySpawn;
 	public static int tileSize;
 	private Player player; // the player, duh (not needed?)
 	private Enemy enemy; // the level's boss (not needed?)
@@ -88,6 +90,8 @@ public class Map extends Pane {
 		grid[Y][X].setID(id);
 		grid[Y][X].setInteraction(interaction);
 	}
+	
+	
 
 	// ------------------------Other Functions-------------------------
 
@@ -187,6 +191,10 @@ public class Map extends Pane {
 		grid[8][6].setID("Wall");
 		grid[8][7].setID("Wall");
 		grid[8][8].setID("Wall");
+		
+		//set Spawn tile
+		playerSpawn = grid[0][0];
+		grid[0][0].setID("Spawn");
 		
 		//Creating interactions
 		inters = new Interaction[2]; //one for speedup and one for speeddown
