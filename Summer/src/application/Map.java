@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private Interaction[] inters;
+	private ArrayList<Interaction> inters;
 	private Tile playerSpawn;
 	private Tile enemySpawn;
 	public static int tileSize;
@@ -58,11 +58,11 @@ public class Map extends Pane {
 		this.grid = grid;
 	}
 
-	public Interaction[] getInters() {
+	public ArrayList<Interaction> getInters() {
 		return inters;
 	}
 
-	public void setInters(Interaction[] inters) {
+	public void setInters(ArrayList<Interaction> inters) {
 		this.inters = inters;
 	}
 
@@ -150,7 +150,7 @@ public class Map extends Pane {
 	 */
 	public void checkTile() {
 
-		// if tile has trap/powerup then trigger tile
+		// if tile has trap/powerUp then trigger tile
 		// triggerTile();
 
 	};
@@ -168,6 +168,12 @@ public class Map extends Pane {
 	 */
 
 	public void levelOne() { // TODO: create a list of coords
+		//TODO Add Points
+		
+		//set Spawn tile
+		playerSpawn = grid[0][0];
+		grid[0][0].setID("Spawn");
+		
 		// Making "Wall" Tiles
 		//ArrayList<Integer[]> wallCoords = new ArrayList<Integer[]>();
 		//wallCoords.add(new Integer[1]);
@@ -210,14 +216,11 @@ public class Map extends Pane {
 		grid[8][7].setID("Wall");
 		grid[8][8].setID("Wall");
 		
-		//set Spawn tile
-		playerSpawn = grid[0][0];
-		grid[0][0].setID("Spawn");
-		
 		//Creating interactions
-		inters = new Interaction[2]; //one for speedup and one for speeddown
-		inters[0] = new SpeedUp(grid[9][0]);
-		inters[1] = new SpeedDown(grid[0][9]);
+		//inters = new Interaction[3]; //one for speedUp, one for speedDown, one for points
+		//inters[0] = new SpeedUp(grid[9][0]);
+		//inters[1] = new SpeedDown(grid[0][9]);
+		//inters[2] = new Points(grid[5][0]);
 		
 		// Printing map to console (for testing purposes)
 		//print();
