@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private ArrayList<Interaction> inters;
+	private ArrayList<Interaction> inters = new ArrayList<Interaction>();
 	private Tile playerSpawn;
 	private Tile enemySpawn;
 	public static int tileSize;
@@ -170,13 +170,16 @@ public class Map extends Pane {
 	public void levelOne() { // TODO: create a list of coords
 		//TODO Figure out how the fuck ArrayLists work
 		
-		//set Spawn tile
+		//set Spawn tiles
 		playerSpawn = grid[0][0];
-		grid[0][0].setID("Spawn");
+		grid[0][0].setID("Player Spawn");
+		
+		enemySpawn = grid[9][9];
+		grid[9][9].setID("Enemy Spawn");
 		
 		// Making "Wall" Tiles
 		//ArrayList<Integer[]> wallCoords = new ArrayList<Integer[]>();
-		//wallCoords.add(new Integer[1]);
+		//wallCoords.add(new Integer{0,1});
 		 
 		grid[0][5].setID("Wall");
 		grid[0][6].setID("Wall");
@@ -216,11 +219,22 @@ public class Map extends Pane {
 		grid[8][7].setID("Wall");
 		grid[8][8].setID("Wall");
 		
-		//Creating interactions
-		//inters = new Interaction[3]; //one for speedUp, one for speedDown, one for points
-		//inters[0] = new SpeedUp(grid[9][0]);
-		//inters[1] = new SpeedDown(grid[0][9]);
-		//inters[2] = new Points(grid[5][0]);
+		//Creating Interactions-----------------------------------------------
+		//placing SpeedUps and SpeedDowns on Tiles
+		inters.add(new SpeedUp(grid[9][0]));
+		inters.add(new SpeedDown(grid[0][9]));
+		
+		//placing points onto all the normal tiles
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[0].length; j++) {
+				if (grid[i][j].getID() == "____") {
+					inters.add(new Points(grid[i][j]));
+				} else {
+					continue;
+				}
+			}
+		}
+		
 		
 		// Printing map to console (for testing purposes)
 		// print();
