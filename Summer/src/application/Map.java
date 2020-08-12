@@ -91,9 +91,27 @@ public class Map extends Pane {
 		grid[Y][X].setInteraction(interaction);
 	}
 	
+	public Tile getPlayerSpawn() {
+		return playerSpawn;
+	}
+	
+	public void setPlayerSpawn(Tile playerSpawn) {
+		this.playerSpawn = playerSpawn;
+	}
+	
+	public Tile getEnemySpawn() {
+		return enemySpawn;
+	}
+	
+	public void setEnemySpawn(Tile enemySpawn) {
+		this.enemySpawn = enemySpawn;
+	}
+	
+	
 	
 
 	// ------------------------Other Functions-------------------------
+
 
 	/**
 	 * updates the map everytime the player or enemy moves will call other update
