@@ -6,8 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private Tile[] speedUps;
-	private Tile[] speedDowns;
+	private Interaction[] inters;
 	private Player player; // the player, duh (not needed?)
 	private Enemy enemy; // the level's boss (not needed?)
 
@@ -20,8 +19,6 @@ public class Map extends Pane {
 	 */
 	public Map() {
 		grid = new Tile[0][0];
-		speedUps = new Tile[0];
-		speedDowns = new Tile[0];
 	};
 
 	/**
@@ -55,20 +52,12 @@ public class Map extends Pane {
 		this.grid = grid;
 	}
 
-	public Tile[] getSpeedUps() {
-		return speedUps;
+	public Interaction[] getInters() {
+		return inters;
 	}
 
-	public void setSpeedUps(Tile[] speedUps) {
-		this.speedUps = speedUps;
-	}
-
-	public Tile[] getSpeedDowns() {
-		return speedDowns;
-	}
-
-	public void setSpeedDowns(Tile[] speedDowns) {
-		this.speedDowns = speedDowns;
+	public void setInters(Interaction[] inters) {
+		this.inters = inters;
 	}
 
 	public Player getPlayer() {
@@ -87,12 +76,13 @@ public class Map extends Pane {
 		this.enemy = enemy;
 	}
 
-	public Tile getTile(int x, int y) {
-		return grid[x][y];
+	public Tile getTile(int X, int Y) {
+		return grid[X][Y];
 	}
 
 	public void setTile(String id, int X, int Y, Interaction interaction) {
-
+		grid[X][Y].setID(id);
+		grid[X][Y].setInteraction(interaction);
 	}
 
 	// ------------------------Other Functions-------------------------
@@ -194,16 +184,16 @@ public class Map extends Pane {
 		
 		
 		// Printing map to console (for testing purposes)
-		print();
+		//print();
 
 	}
 
 	public void initGraphics() {
 		// Making Rectangle for grid (Should take up the whole window)
 		// Border
-		Rectangle rect = new Rectangle(0, 0, Game.WIDTH, Game.HEIGHT);
-		rect.setFill(Color.rgb(0, 0, 0));
-		getChildren().add(rect);
+		Rectangle border = new Rectangle(0, 0, Game.WIDTH, Game.HEIGHT);
+		border.setFill(Color.rgb(0, 0, 0));
+		getChildren().add(border);
 	}
 
 	/**

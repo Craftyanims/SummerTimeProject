@@ -9,8 +9,8 @@ public class Tile extends Rectangle{
 	private int y; // y position on grid
 	private boolean canOverlap = false; // for walls
 	private Interaction inter; // for traps and powerups
-	private boolean hasTrap; // does tile have trap on it
-	private boolean hasPowerUp; // does tile have powerup on it
+	private boolean hasTrap; // does tile have trap on it (SPEEDDOWN IS PURPLE, will change later?)
+	private boolean hasPowerUp; // does tile have powerup on it (SPEEDUP IS RED, will change later?)
 
 	// ------------------------Constructors---------------------------
 	/**
