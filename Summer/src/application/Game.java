@@ -37,6 +37,7 @@ public class Game extends Scene {
 		player = new Player("bob", map);
 		enemy = new Enemy("Jack-e", map);
 		root.getChildren().add(map);
+		initInteractions();
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
 
