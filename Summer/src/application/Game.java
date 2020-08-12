@@ -63,11 +63,12 @@ public class Game extends Scene {
 	}
 	
 	private void checkInteractions() {
-		int gridX = (int)player.getX()%39;
-		int gridY = (int)player.getY()%39;
+		int size = Map.tileSize;
+		int gridX = (int)player.getX()%size;
+		int gridY = (int)player.getY()%size;
 		for (Interaction i : inters) {
-			int tileX = (int)i.getX()%39;
-			int tileY = (int)i.getY()%39;
+			int tileX = (int)i.getX()%size;
+			int tileY = (int)i.getY()%size;
 			if(tileX == gridX && tileY == gridY) {
 				i.trigger(player);
 			}
