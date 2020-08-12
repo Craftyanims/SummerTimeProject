@@ -42,7 +42,7 @@ public class Game extends Scene {
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
 
-		// asd
+
 
 	}
 

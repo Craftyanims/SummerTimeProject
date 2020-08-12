@@ -25,11 +25,11 @@ public class SpeedUp extends Interaction {
 
 			@Override
 			public void run() {
-				System.out.println("hold on there buddy");
 				player.setSpeed(temp);
+				System.out.println("hold on there buddy " + player.getSpeed());
 
 			}
-		}, 3000);
+		}, duration);
 
 	}
 
