@@ -19,6 +19,7 @@ public class Game extends Scene {
 	private Player player;
 	private Enemy enemy;
 	private Pane root;
+	private Interaction inters[];
 
 	Game() {
 		super(new Pane(), WIDTH, HEIGHT);
@@ -46,8 +47,8 @@ public class Game extends Scene {
 	}
 
 	private void initInteractions() {
-		Interaction[] in = map.getInters();
-		root.getChildren().addAll(in);
+		inters = map.getInters();
+		root.getChildren().addAll(inters);
 	}
 
 	private void initAnimationTimer() {

@@ -10,7 +10,7 @@ public class SpeedDown extends Interaction{
 	}
 
 	@Override
-	public void trigger() {
+	public void trigger(Player player) {
 		// TODO Auto-generated method stub
 		
 	}
