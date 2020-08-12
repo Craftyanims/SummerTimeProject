@@ -19,6 +19,7 @@ public class Game extends Scene {
 	private Player player;
 	private Enemy enemy;
 	private Pane root;
+	private Interaction inters[];
 
 	Game() {
 		super(new Pane(), WIDTH, HEIGHT);
@@ -34,13 +35,32 @@ public class Game extends Scene {
 
 	private void init() {
 		map = new Map(10, 10);
-		player = new Player("bob",map);
-		enemy = new Enemy("Jack-e",map);
+		int level1[][] = 
+					  {{2,0,0,0,0,1,1,0,0,4},
+		              {0,1,1,1,0,0,0,0,1,0},
+		              {0,0,0,1,0,1,0,1,1,0},
+		              {0,1,0,0,0,1,0,1,0,0},
+		              {0,1,1,1,0,1,0,1,0,1},
+		              {0,0,0,1,0,0,0,1,0,1},
+		              {0,1,0,1,1,1,1,1,0,1},
+		              {0,1,0,0,0,0,0,0,0,0},
+		              {0,1,1,1,0,1,1,1,1,0},
+		              {5,0,0,0,0,0,0,0,0,3}};
+		
+		player = new Player("bob", map);
+		enemy = new Enemy("Jack-e", map);
 		root.getChildren().add(map);
+		initInteractions();
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
-		// asd
 
+
+
+	}
+
+	private void initInteractions() {
+		inters = map.getInters();
+		root.getChildren().addAll(inters);
 	}
 
 	private void initAnimationTimer() {
@@ -53,9 +73,24 @@ public class Game extends Scene {
 			}
 		};
 	}
+	
+	private void checkInteractions() {
+		int size = Map.tileSize;
+		int gridX = (int)player.getX()%size;
+		int gridY = (int)player.getY()%size;
+		for (Interaction i : inters) {
+			int tileX = (int)i.getX()%size;
+			int tileY = (int)i.getY()%size;
+			if(tileX == gridX && tileY == gridY) {
+				i.trigger(player);
+			}
+		}
+	}
 
 	public void update() {
-		 player.update(enemy);
+		player.update(enemy);
+		checkInteractions();
+		
 
 	}
 

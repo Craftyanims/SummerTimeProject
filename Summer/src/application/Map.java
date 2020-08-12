@@ -1,13 +1,18 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private Interaction[] inters;
-	private Player player; // the player, duh (not needed?)
+	private ArrayList<Interaction> inters;
+	private Tile playerSpawn;
+	private Tile enemySpawn;
+	public static int tileSize;
+	private Player player; // the player(not needed?)
 	private Enemy enemy; // the level's boss (not needed?)
 
 	// ------------------------Constructors---------------------------
@@ -31,10 +36,11 @@ public class Map extends Pane {
 		
 		grid = new Tile[maxX][maxY];
 		//to make RECTANGLES
+		tileSize = 39;
 		initGraphics();
 		for (int i = 0; i < maxY; i++) {
 			for (int j = 0; j < maxX; j++) {
-				grid[i][j] = new Tile("    ", 5 + j*39, 5 + i*39);
+				grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
 				getChildren().add(grid[i][j]);
 			}
 		}
@@ -52,11 +58,11 @@ public class Map extends Pane {
 		this.grid = grid;
 	}
 
-	public Interaction[] getInters() {
+	public ArrayList<Interaction> getInters() {
 		return inters;
 	}
 
-	public void setInters(Interaction[] inters) {
+	public void setInters(ArrayList<Interaction> inters) {
 		this.inters = inters;
 	}
 
@@ -77,15 +83,35 @@ public class Map extends Pane {
 	}
 
 	public Tile getTile(int X, int Y) {
-		return grid[X][Y];
+		return grid[Y][X];
 	}
 
 	public void setTile(String id, int X, int Y, Interaction interaction) {
-		grid[X][Y].setID(id);
-		grid[X][Y].setInteraction(interaction);
+		grid[Y][X].setID(id);
+		grid[Y][X].setInteraction(interaction);
 	}
+	
+	public Tile getPlayerSpawn() {
+		return playerSpawn;
+	}
+	
+	public void setPlayerSpawn(Tile playerSpawn) {
+		this.playerSpawn = playerSpawn;
+	}
+	
+	public Tile getEnemySpawn() {
+		return enemySpawn;
+	}
+	
+	public void setEnemySpawn(Tile enemySpawn) {
+		this.enemySpawn = enemySpawn;
+	}
+	
+	
+	
 
 	// ------------------------Other Functions-------------------------
+
 
 	/**
 	 * updates the map everytime the player or enemy moves will call other update
@@ -124,7 +150,7 @@ public class Map extends Pane {
 	 */
 	public void checkTile() {
 
-		// if tile has trap/powerup then trigger tile
+		// if tile has trap/powerUp then trigger tile
 		// triggerTile();
 
 	};
@@ -142,7 +168,16 @@ public class Map extends Pane {
 	 */
 
 	public void levelOne() { // TODO: create a list of coords
+		//TODO Figure out how the fuck ArrayLists work
+		
+		//set Spawn tile
+		playerSpawn = grid[0][0];
+		grid[0][0].setID("Spawn");
+		
 		// Making "Wall" Tiles
+		//ArrayList<Integer[]> wallCoords = new ArrayList<Integer[]>();
+		//wallCoords.add(new Integer[1]);
+		 
 		grid[0][5].setID("Wall");
 		grid[0][6].setID("Wall");
 		grid[1][1].setID("Wall");
@@ -181,23 +216,36 @@ public class Map extends Pane {
 		grid[8][7].setID("Wall");
 		grid[8][8].setID("Wall");
 		
-		
+		//Creating interactions
+		//inters = new Interaction[3]; //one for speedUp, one for speedDown, one for points
+		//inters[0] = new SpeedUp(grid[9][0]);
+		//inters[1] = new SpeedDown(grid[0][9]);
+		//inters[2] = new Points(grid[5][0]);
 		
 		// Printing map to console (for testing purposes)
-		//print();
+		// print();
 
+	}
+	
+	public void setWalls(int[][] coord) {
+		for (int i = 0; i < coord.length; i++) {
+			for (int j = 0; j < coord[0].length; j++) {
+				grid[i][j].setID("Wall");
+			}
+		}
+		
 	}
 
 	public void initGraphics() {
 		// Making Rectangle for grid (Should take up the whole window)
 		// Border
 		Rectangle border = new Rectangle(0, 0, Game.WIDTH, Game.HEIGHT);
-		border.setFill(Color.rgb(0, 0, 0));
+		border.setFill(Color.rgb(0, 0, 0)); //set to black
 		getChildren().add(border);
 	}
 
 	/**
-	 * prints map to console
+	 * prints map to console (for testing purposes)
 	 */
 
 	public void print() {
