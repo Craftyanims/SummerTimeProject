@@ -60,7 +60,7 @@ public class Game extends Scene {
 
 	private void initInteractions() {
 //		inters = map.getInters();
-		root.getChildren().addAll(inters);
+	//	root.getChildren().addAll(inters);
 	}
 
 	private void initAnimationTimer() {
