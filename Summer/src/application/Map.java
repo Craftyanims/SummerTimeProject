@@ -77,12 +77,12 @@ public class Map extends Pane {
 	}
 
 	public Tile getTile(int X, int Y) {
-		return grid[X][Y];
+		return grid[Y][X];
 	}
 
 	public void setTile(String id, int X, int Y, Interaction interaction) {
-		grid[X][Y].setID(id);
-		grid[X][Y].setInteraction(interaction);
+		grid[Y][X].setID(id);
+		grid[Y][X].setInteraction(interaction);
 	}
 
 	// ------------------------Other Functions-------------------------
