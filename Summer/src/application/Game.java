@@ -34,13 +34,19 @@ public class Game extends Scene {
 
 	private void init() {
 		map = new Map(10, 10);
-		player = new Player("bob",map);
-		enemy = new Enemy("Jack-e",map);
+		player = new Player("bob", map);
+		enemy = new Enemy("Jack-e", map);
 		root.getChildren().add(map);
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
+
 		// asd
 
+	}
+
+	private void initInteractions() {
+		Interaction[] in = map.getInters();
+		root.getChildren().addAll(in);
 	}
 
 	private void initAnimationTimer() {
@@ -55,7 +61,7 @@ public class Game extends Scene {
 	}
 
 	public void update() {
-		 player.update(enemy);
+		player.update(enemy);
 
 	}
 

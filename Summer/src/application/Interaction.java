@@ -12,6 +12,7 @@ public abstract class Interaction extends Rectangle{
 		super(0,0,Game.GRID_X*0.7,Game.GRID_X*0.7);
 		this.tile = tile;
 		this.value = value;
+		tile.setInteraction(this);
 	}
 	public abstract void trigger();
 	
