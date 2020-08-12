@@ -54,11 +54,11 @@ public class Tile extends Rectangle{
 	 * @param interaction: either trap or powerup
 	 */
 	public Tile(String id, int X, int Y, Interaction interaction) {
+		super(X, Y, 39, 39);
+		setFill(Color.rgb(0, 102, 0));
 		ID = id;
 		x = X;
 		y = Y;
-		//hasTrap = false;
-		//hasPowerUp = true;
 		inter = interaction;
 	}
 
