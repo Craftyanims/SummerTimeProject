@@ -59,8 +59,8 @@ public class Game extends Scene {
 	}
 
 	private void initInteractions() {
-		inters = map.getInters();
-		root.getChildren().addAll(inters);
+//		inters = map.getInters();
+	//	root.getChildren().addAll(inters);
 	}
 
 	private void initAnimationTimer() {
@@ -89,7 +89,7 @@ public class Game extends Scene {
 
 	public void update() {
 		player.update(enemy);
-		checkInteractions();
+		//checkInteractions();
 		
 
 	}
