@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import javafx.scene.paint.Color;
 
 public class SpeedUp extends Interaction {
-	private int speedBuff = 1;
+	private int speedBuff = 1; //speed
 	private int duration = 3000;
 
 	SpeedUp(Tile tile) {
