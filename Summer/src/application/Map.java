@@ -6,8 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private Tile[] speedUps;
-	private Tile[] speedDowns;
+	private Interaction[] inters;
 	private Player player; // the player, duh (not needed?)
 	private Enemy enemy; // the level's boss (not needed?)
 
@@ -20,8 +19,6 @@ public class Map extends Pane {
 	 */
 	public Map() {
 		grid = new Tile[0][0];
-		speedUps = new Tile[0];
-		speedDowns = new Tile[0];
 	};
 
 	/**
@@ -55,20 +52,12 @@ public class Map extends Pane {
 		this.grid = grid;
 	}
 
-	public Tile[] getSpeedUps() {
-		return speedUps;
+	public Interaction[] getInters() {
+		return inters;
 	}
 
-	public void setSpeedUps(Tile[] speedUps) {
-		this.speedUps = speedUps;
-	}
-
-	public Tile[] getSpeedDowns() {
-		return speedDowns;
-	}
-
-	public void setSpeedDowns(Tile[] speedDowns) {
-		this.speedDowns = speedDowns;
+	public void setInters(Interaction[] inters) {
+		this.inters = inters;
 	}
 
 	public Player getPlayer() {
