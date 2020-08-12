@@ -25,7 +25,7 @@ public class SpeedDown extends Interaction{
 			@Override
 			public void run() {
 				player.setSpeed(temp);
-				System.out.println("hold on there buddy " + player.getSpeed());
+				System.out.println("slow end " + player.getSpeed());
 
 			}
 		}, duration);
