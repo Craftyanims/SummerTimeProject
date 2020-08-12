@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import javafx.scene.paint.Color;
 
 public class SpeedDown extends Interaction{
-	private int speedDeBuff = 15;
+	private int speedDeBuff = 3;
 	private int duration = 3000;
 	SpeedDown(Tile tile){
 		super(tile,-10);
