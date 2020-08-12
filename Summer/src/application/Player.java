@@ -1,6 +1,7 @@
 package application;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Player extends Rectangle{
@@ -13,115 +14,13 @@ public class Player extends Rectangle{
 	private int gridX;
 	private int gridY;
 	private Map map;
+	private int tileSize = 39;
+	private int playerSize = 19;
 	private KeyCode left;
 	private KeyCode right;
 	private KeyCode up;
 	private KeyCode down;
 	
-	//-------------------------------------------Getters and Setters----------------------------------------------------
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public int getScore() {
-		return score;
-	}
-	
-	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	public int getLives() {
-		return lives;
-	}
-	
-	public void setLives(int lives) {
-		if(lives >= 0 && lives <= 3) {			
-			this.lives = lives;
-		}
-	}
-	
-	public boolean isAlive() {
-		return alive;
-	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
-	
-	public int getSpeed() {
-		return speed;
-	}
-	
-	public void setSpeed(int speed) {
-		if(speed >= 0) {			
-			this.speed = speed;
-		}
-	}
-	
-	public int getGridX() {
-		return gridX;
-	}
-
-	public void setGridX(int x) {
-		if (x >= 0 && x <= 10) {
-			//if (map.checkTile());
-		}
-		gridX = x;
-	}
-
-	public int getGridY() {
-		return gridY;
-	}
-
-	public void setGridY(int y) {
-		this.gridY = y;
-	}
-	
-	public Map getMap() {
-		return map;
-	}
-	
-	public void setMap(Map map) {
-		this.map = map;
-	}
-	
-	public KeyCode getLeft() {
-		return left;
-	}
-	
-	public void setLeft(KeyCode left) {
-		this.left = left;
-	}
-	
-	public KeyCode getRight() {
-		return right;
-	}
-	
-	public void setRight(KeyCode right) {
-		this.right = right;
-	}
-	
-	public KeyCode getUp() {
-		return up;
-	}
-	
-	public void setUp(KeyCode up) {
-		this.up = up;
-	}
-	
-	public KeyCode getDown() {
-		return down;
-	}
-	
-	public void setDown(KeyCode down) {
-		this.down = down;
-	}
-
 	//-----------------------------------------------Constructor--------------------------------------------------------
 	/**
 	 * Create a Player with a specific name
@@ -129,12 +28,13 @@ public class Player extends Rectangle{
 	 * @param map the map the player will exist on
 	 */
 	public Player(String name, Map map) {
-		super(0,0,20,20);
+		super(5,5,20,20);
+		setFill(Color.WHITE);
 		setName(name);
 		setScore(0);
 		setLives(3);
 		setAlive(true);
-		//TODO:speed stuff
+		setSpeed(2);
 		setGridX(0);
 		setGridY(0);
 		this.map = map;
@@ -207,6 +107,11 @@ public class Player extends Rectangle{
 		return false;
 	}
 	
+	public void move() {
+		setLayoutX(gridX);
+		setLayoutY(gridY);
+	}
+	
 	public void update(Enemy enemy) {
 		System.out.println("Updating...");
 		Tile[][] grid = map.getGrid();
@@ -215,11 +120,12 @@ public class Player extends Rectangle{
 		
 		if(SpecialKeyboard.checkKey(left)) {
 			System.out.println("Trying to move left...");
-			if((gridX - 1) < 0) {
+			if(((gridX - speed)/tileSize) < 0 || gridX - speed < 0) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				nextX = gridX - 1;
-				Tile nextTile = grid[nextX][gridY];
+				nextX = gridX - speed;
+				System.out.println(nextX);
+				Tile nextTile = grid[gridY/tileSize][nextX/tileSize];
 				if (nextTile.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -230,12 +136,12 @@ public class Player extends Rectangle{
 		}
 		
 		if(SpecialKeyboard.checkKey(right)) {
-			System.out.println("Trying to move right...");
-			if((gridX + 1) > 9) {
+			if(((gridX + playerSize + speed)/tileSize) > 9) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				nextX = gridX + 1;
-				Tile nextTile = grid[nextX][gridY];
+				nextX = gridX + speed;
+				Tile nextTile = grid[(gridY + playerSize)/tileSize][(nextX + playerSize)/tileSize];
+				System.out.println("ID is: " + nextTile.getID());
 				if (nextTile.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -247,11 +153,11 @@ public class Player extends Rectangle{
 		
 		if(SpecialKeyboard.checkKey(up)) {
 			System.out.println("Trying to move up...");
-			if((gridY - 1) < 0) {
+			if(((gridY - speed)/tileSize) < 0 || gridY < 0) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				nextY = gridY - 1;
-				Tile nextTile = grid[gridX][nextY];
+				nextY = gridY - speed;
+				Tile nextTile = grid[nextY/tileSize][gridX/tileSize];
 				if (nextTile.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -263,11 +169,11 @@ public class Player extends Rectangle{
 		
 		if(SpecialKeyboard.checkKey(down)) {
 			System.out.println("Trying to move down...");
-			if((gridY + 1) > 9) {
+			if(((gridY + playerSize + speed)/tileSize) > 9) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				nextY = gridY + 1;
-				Tile nextTile = grid[gridX][nextY];
+				nextY = gridY + speed;
+				Tile nextTile = grid[(nextY + playerSize)/tileSize][(gridX + playerSize)/tileSize];
 				if (nextTile.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -276,10 +182,112 @@ public class Player extends Rectangle{
 				}
 			}
 		}
-		
+		move();
 		isDead(enemy);
 
 	}
+	
+	//-------------------------------------------Getters and Setters----------------------------------------------------
+		public String getName() {
+			return name;
+		}
+		
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public int getScore() {
+			return score;
+		}
+		
+		public void setScore(int score) {
+			this.score = score;
+		}
+		
+		public int getLives() {
+			return lives;
+		}
+		
+		public void setLives(int lives) {
+			if(lives >= 0 && lives <= 3) {			
+				this.lives = lives;
+			}
+		}
+		
+		public boolean isAlive() {
+			return alive;
+		}
+
+		public void setAlive(boolean alive) {
+			this.alive = alive;
+		}
+		
+		public int getSpeed() {
+			return speed;
+		}
+		
+		public void setSpeed(int speed) {
+			if(speed >= 0) {			
+				this.speed = speed;
+			}
+		}
+		
+		public int getGridX() {
+			return gridX;
+		}
+
+		public void setGridX(int x) {
+			gridX = x;
+		}
+
+		public int getGridY() {
+			return gridY;
+		}
+
+		public void setGridY(int y) {
+			gridY = y;
+		}
+		
+		public Map getMap() {
+			return map;
+		}
+		
+		public void setMap(Map map) {
+			this.map = map;
+		}
+		
+		public KeyCode getLeft() {
+			return left;
+		}
+		
+		public void setLeft(KeyCode left) {
+			this.left = left;
+		}
+		
+		public KeyCode getRight() {
+			return right;
+		}
+		
+		public void setRight(KeyCode right) {
+			this.right = right;
+		}
+		
+		public KeyCode getUp() {
+			return up;
+		}
+		
+		public void setUp(KeyCode up) {
+			this.up = up;
+		}
+		
+		public KeyCode getDown() {
+			return down;
+		}
+		
+		public void setDown(KeyCode down) {
+			this.down = down;
+		}
+
 	
 	
 }
