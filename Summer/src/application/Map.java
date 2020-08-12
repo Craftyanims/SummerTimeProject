@@ -12,7 +12,7 @@ public class Map extends Pane {
 	private Tile playerSpawn;
 	private Tile enemySpawn;
 	public static int tileSize;
-	private Player player; // the player, duh (not needed?)
+	private Player player; // the player(not needed?)
 	private Enemy enemy; // the level's boss (not needed?)
 
 	// ------------------------Constructors---------------------------
@@ -168,7 +168,7 @@ public class Map extends Pane {
 	 */
 
 	public void levelOne() { // TODO: create a list of coords
-		//TODO Add Points
+		//TODO Figure out how the fuck ArrayLists work
 		
 		//set Spawn tile
 		playerSpawn = grid[0][0];
@@ -223,7 +223,7 @@ public class Map extends Pane {
 		//inters[2] = new Points(grid[5][0]);
 		
 		// Printing map to console (for testing purposes)
-		//print();
+		// print();
 
 	}
 	
@@ -245,7 +245,7 @@ public class Map extends Pane {
 	}
 
 	/**
-	 * prints map to console
+	 * prints map to console (for testing purposes)
 	 */
 
 	public void print() {
