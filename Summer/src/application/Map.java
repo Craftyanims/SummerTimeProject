@@ -182,8 +182,9 @@ public class Map extends Pane {
 		grid[8][8].setID("Wall");
 		
 		//Creating interactions
-		inters = new Interaction[1];
-		inters[0] = new SpeedUp(grid[0][8]);
+		inters = new Interaction[2];
+		inters[0] = new SpeedUp(grid[9][0]);
+		inters[1] = new SpeedDown(grid[0][9]);
 		
 		// Printing map to console (for testing purposes)
 		//print();
