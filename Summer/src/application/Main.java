@@ -30,7 +30,7 @@ public class Main extends Application {
 	}
 
 	public static void testJunk() {
-//		//Map test = new Map(10, 10);
+		//Map test = new Map(10, 10);
 		//test.levelOne();
 	}
 }

@@ -87,12 +87,13 @@ public class Map extends Pane {
 		this.enemy = enemy;
 	}
 
-	public Tile getTile(int x, int y) {
-		return grid[x][y];
+	public Tile getTile(int X, int Y) {
+		return grid[X][Y];
 	}
 
 	public void setTile(String id, int X, int Y, Interaction interaction) {
-
+		grid[X][Y].setID(id);
+		grid[X][Y].setInteraction(interaction);
 	}
 
 	// ------------------------Other Functions-------------------------
@@ -194,16 +195,16 @@ public class Map extends Pane {
 		
 		
 		// Printing map to console (for testing purposes)
-		print();
+		//print();
 
 	}
 
 	public void initGraphics() {
 		// Making Rectangle for grid (Should take up the whole window)
 		// Border
-		Rectangle rect = new Rectangle(0, 0, Game.WIDTH, Game.HEIGHT);
-		rect.setFill(Color.rgb(0, 0, 0));
-		getChildren().add(rect);
+		Rectangle border = new Rectangle(0, 0, Game.WIDTH, Game.HEIGHT);
+		border.setFill(Color.rgb(0, 0, 0));
+		getChildren().add(border);
 	}
 
 	/**
