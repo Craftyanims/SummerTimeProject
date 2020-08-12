@@ -15,6 +15,7 @@ public class SpeedDown extends Interaction{
 
 	@Override
 	public void trigger(Player player) {
+		addPoints(player);
 		Timer buff = new Timer();
 		int temp = player.getSpeed();
 		player.setSpeed(temp-speedDeBuff);
