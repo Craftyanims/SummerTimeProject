@@ -36,18 +36,11 @@ public class Game extends Scene {
 	}
 
 	private void init() {
-		int level1[][] = 
-					  {{2,0,0,0,0,1,1,0,0,4},
-		              {0,1,1,1,0,0,0,0,1,0},
-		              {0,0,0,1,0,1,0,1,1,0},
-		              {0,1,0,0,0,1,0,1,0,0},
-		              {0,1,1,1,0,1,0,1,0,1},
-		              {0,0,0,1,0,0,0,1,0,1},
-		              {0,1,0,1,1,1,1,1,0,1},
-		              {0,1,0,0,0,0,0,0,0,0},
-		              {0,1,1,1,0,1,1,1,1,0},
-		              {5,0,0,0,0,0,0,0,0,3}};
-		
+		int level1[][] = { { 2, 0, 0, 0, 0, 1, 1, 0, 0, 4 }, { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 },
+				{ 0, 0, 0, 1, 0, 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 0, 1, 0, 1, 0, 0 }, { 0, 1, 1, 1, 0, 1, 0, 1, 0, 1 },
+				{ 0, 0, 0, 1, 0, 0, 0, 1, 0, 1 }, { 0, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 1, 1, 1, 0, 1, 1, 1, 1, 0 }, { 5, 0, 0, 0, 0, 0, 0, 0, 0, 3 } };
+
 		map = new Map(level1);
 		player = new Player("bob", map);
 		enemy = new Enemy("Jack-e", map);
@@ -55,8 +48,6 @@ public class Game extends Scene {
 		initInteractions();
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
-
-
 
 	}
 
@@ -75,28 +66,28 @@ public class Game extends Scene {
 			}
 		};
 	}
-	
+
 	private void checkInteractions() {
 		int size = Map.tileSize;
-		int gridX = (int)player.getLayoutX()/size;
-		int gridY = (int)player.getLayoutY()/size;
-		System.out.println(gridX + " " + gridY);
-		for (Interaction i : inters) {
-			int tileX = (int)i.getX()/size;
-			int tileY = (int)i.getY()/size;
-			if(tileX == gridX && tileY == gridY) {
-				System.out.println("SOMETHING HAPPPPEEEEEEENNNNNDDDDDDDDDDDDDD");
-				i.trigger(player);
-				i.clear();
-				inters.remove(i);
+		int gridX = (int) player.getLayoutX() / size;
+		int gridY = (int) player.getLayoutY() / size;
+		try {
+			for (Interaction i : inters) {
+				int tileX = (int) i.getX() / size;
+				int tileY = (int) i.getY() / size;
+				if (tileX == gridX && tileY == gridY) {
+					i.trigger(player);
+					i.clear();
+					inters.remove(i);
+				}
 			}
+		} catch (java.util.ConcurrentModificationException e) {
 		}
 	}
 
 	public void update() {
 		player.update(enemy);
 		checkInteractions();
-		
 
 	}
 
