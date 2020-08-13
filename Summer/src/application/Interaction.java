@@ -21,6 +21,12 @@ public abstract class Interaction extends Rectangle{
 		this.value = value;
 		tile.setInteraction(this);
 	}
+	
+	public void clear() {
+		tile.clear();
+		setVisible(false);
+	}
+	
 	protected void addPoints(Player player) {
 		player.setScore(player.getScore()+value);
 		System.out.println("points: " + value + ", total: " + player.getScore());
