@@ -48,6 +48,57 @@ public class Map extends Pane {
 
 		levelOne();
 	};
+	
+	/*
+	 * Creates a Map with the specified 2D array layout
+	 */
+	
+	public Map(int[][] layout) {
+		grid = new Tile[layout.length][layout[0].length];
+		tileSize = 39;
+		initGraphics();
+		//For layout: 0=path, 1=wall, 2=playerSpawn, 3=enemySpawn, 4=powerUp, 5=trap
+		//coins go on all path tiles
+		for (int i = 0; i < layout.length; i++) {
+			for (int j = 0; j < layout[0].length; j++) {
+				
+				switch(layout[i][j]) {
+					case 0: // path tile
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						inters.add(new Points(grid[i][j]));
+						break;
+					case 1: //wall tile
+						grid[i][j] = new Tile("Wall", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						break;
+					case 2: //player spawn tile
+						grid[i][j] = new Tile("Player Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						break;
+					case 3: //enemy spawn tile
+						grid[i][j] = new Tile("Enemy Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						break;
+					case 4: //powerup
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						inters.add(new SpeedUp(grid[i][j]));
+						break;
+					case 5: //trap
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						getChildren().add(grid[i][j]);
+						inters.add(new SpeedDown(grid[i][j]));
+						break;
+					default:
+						System.out.println("INVALID LAYOUT!");
+				}
+				
+			}
+		}
+		
+		
+	}
 
 	// ------------------------Getters and Setters---------------------
 
