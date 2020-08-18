@@ -64,6 +64,7 @@ public class Player extends Rectangle{
 	 */
 	public boolean isDead(Enemy enemy) {
 		if(enemy.getX() == gridX && enemy.getY() == gridY) {
+			//need more
 			loseALife();
 			isPermDead();
 			return true;
