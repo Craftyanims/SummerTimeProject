@@ -113,7 +113,6 @@ public class Player extends Rectangle{
 	}
 	
 	public void update(Enemy enemy) {
-		//System.out.println("Updating...");
 		Tile[][] grid = map.getGrid();
 		Tile nextTileTL;
 		Tile nextTileTR;
@@ -128,20 +127,10 @@ public class Player extends Rectangle{
 			if(((nextX)/tileSize) < 0 || nextX < 0) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				System.out.println("Next X: " + nextX);
-				System.out.println("Grid Y: " + gridY);
 				nextTileTL = grid[gridY/tileSize][nextX/tileSize];
-				System.out.println("Y: " + gridY/tileSize + " and X: " + nextX/tileSize);
-				System.out.println("T Left ID: " + nextTileTL.getID());
 				nextTileTR = grid[gridY/tileSize][(nextX + playerSize)/tileSize];
-				System.out.println("Y: " + gridY/tileSize + " and X: " + (nextX + playerSize)/tileSize);
-				System.out.println("T Right ID: " + nextTileTR.getID());
 				nextTileBL = grid[(gridY + playerSize)/tileSize][nextX/tileSize];
-				System.out.println("Y: " + (gridY + playerSize)/tileSize + " and X: " + nextX/tileSize);
-				System.out.println("B Left ID: " + nextTileBL.getID());
 				nextTileBR = grid[(gridY + playerSize)/tileSize][(nextX + playerSize)/tileSize];
-				System.out.println("Y: " + (gridY + playerSize)/tileSize + " and X: " + (nextX + playerSize)/tileSize);
-				System.out.println("B Right ID: " + nextTileBR.getID());
 				if (nextTileTL.getID() == "Wall" || nextTileTR.getID() == "Wall" || nextTileBL.getID() == "Wall" || nextTileBR.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -157,20 +146,10 @@ public class Player extends Rectangle{
 			if(((nextX + playerSize)/tileSize) > 9) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				System.out.println("Next X: " + nextX);
-				System.out.println("Grid Y: " + gridY);
 				nextTileTL = grid[gridY/tileSize][nextX/tileSize];
-				System.out.println("Y: " + gridY/tileSize + " and X: " + nextX/tileSize);
-				System.out.println("T Left ID: " + nextTileTL.getID());
 				nextTileTR = grid[gridY/tileSize][(nextX + playerSize)/tileSize];
-				System.out.println("Y: " + gridY/tileSize + " and X: " + (nextX + playerSize)/tileSize);
-				System.out.println("T Right ID: " + nextTileTR.getID());
 				nextTileBL = grid[(gridY + playerSize)/tileSize][nextX/tileSize];
-				System.out.println("Y: " + (gridY + playerSize)/tileSize + " and X: " + nextX/tileSize);
-				System.out.println("B Left ID: " + nextTileBL.getID());
 				nextTileBR = grid[(gridY + playerSize)/tileSize][(nextX + playerSize)/tileSize];
-				System.out.println("Y: " + (gridY + playerSize)/tileSize + " and X: " + (nextX + playerSize)/tileSize);
-				System.out.println("B Right ID: " + nextTileBR.getID());
 				if (nextTileTL.getID() == "Wall" || nextTileTR.getID() == "Wall" || nextTileBL.getID() == "Wall" || nextTileBR.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -186,20 +165,10 @@ public class Player extends Rectangle{
 			if(((nextY)/tileSize) < 0 || nextY < 0) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				System.out.println("Grid X: " + gridX);
-				System.out.println("Next Y: " + nextY);
 				nextTileTL = grid[nextY/tileSize][gridX/tileSize];
-				System.out.println("Y: " + nextY/tileSize + " and X: " + gridX/tileSize);
-				System.out.println("T Left ID: " + nextTileTL.getID());
 				nextTileTR = grid[nextY/tileSize][(gridX + playerSize)/tileSize];
-				System.out.println("Y: " + nextY/tileSize + " and X: " + (gridX + playerSize)/tileSize);
-				System.out.println("T Right ID: " + nextTileTR.getID());
 				nextTileBL = grid[(nextY + playerSize)/tileSize][gridX/tileSize];
-				System.out.println("Y: " + (nextY + playerSize)/tileSize + " and X: " + gridX/tileSize);
-				System.out.println("B Left ID: " + nextTileBL.getID());
 				nextTileBR = grid[(nextY + playerSize)/tileSize][(gridX + playerSize)/tileSize];
-				System.out.println("Y: " + (nextY + playerSize)/tileSize + " and X: " + (gridX + playerSize)/tileSize);
-				System.out.println("B Right ID: " + nextTileBR.getID());
 				if (nextTileTL.getID() == "Wall" || nextTileTR.getID() == "Wall" || nextTileBL.getID() == "Wall" || nextTileBR.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -215,20 +184,10 @@ public class Player extends Rectangle{
 			if(((nextY + playerSize)/tileSize) > 9) {
 				System.out.println("Cannot Move: Out of bounds");
 			}else {	
-				System.out.println("Grid X: " + gridX);
-				System.out.println("Next Y: " + nextY);
 				nextTileTL = grid[nextY/tileSize][gridX/tileSize];
-				System.out.println("Y: " + nextY/tileSize + " and X: " + gridX/tileSize);
-				System.out.println("T Left ID: " + nextTileTL.getID());
 				nextTileTR = grid[nextY/tileSize][(gridX + playerSize)/tileSize];
-				System.out.println("Y: " + nextY/tileSize + " and X: " + (gridX + playerSize)/tileSize);
-				System.out.println("T Right ID: " + nextTileTR.getID());
 				nextTileBL = grid[(nextY + playerSize)/tileSize][gridX/tileSize];
-				System.out.println("Y: " + (nextY + playerSize)/tileSize + " and X: " + gridX/tileSize);
-				System.out.println("B Left ID: " + nextTileBL.getID());
 				nextTileBR = grid[(nextY + playerSize)/tileSize][(gridX + playerSize)/tileSize];
-				System.out.println("Y: " + (nextY + playerSize)/tileSize + " and X: " + (gridX + playerSize)/tileSize);
-				System.out.println("B Right ID: " + nextTileBR.getID());
 				if (nextTileTL.getID() == "Wall" || nextTileTR.getID() == "Wall" || nextTileBL.getID() == "Wall" || nextTileBR.getID() == "Wall") {
 					System.out.println("Cannot Move: There is a wall");
 				}else {
@@ -342,7 +301,4 @@ public class Player extends Rectangle{
 		public void setDown(KeyCode down) {
 			this.down = down;
 		}
-
-	
-	
 }
