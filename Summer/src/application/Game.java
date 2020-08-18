@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -19,7 +21,7 @@ public class Game extends Scene {
 	private Player player;
 	private Enemy enemy;
 	private Pane root;
-	private Interaction inters[];
+	private ArrayList<Interaction> inters;
 
 	Game() {
 		super(new Pane(), WIDTH, HEIGHT);
@@ -34,19 +36,12 @@ public class Game extends Scene {
 	}
 
 	private void init() {
-		map = new Map(10, 10);
-		int level1[][] = 
-					  {{2,0,0,0,0,1,1,0,0,4},
-		              {0,1,1,1,0,0,0,0,1,0},
-		              {0,0,0,1,0,1,0,1,1,0},
-		              {0,1,0,0,0,1,0,1,0,0},
-		              {0,1,1,1,0,1,0,1,0,1},
-		              {0,0,0,1,0,0,0,1,0,1},
-		              {0,1,0,1,1,1,1,1,0,1},
-		              {0,1,0,0,0,0,0,0,0,0},
-		              {0,1,1,1,0,1,1,1,1,0},
-		              {5,0,0,0,0,0,0,0,0,3}};
-		
+		int level1[][] = { { 2, 0, 0, 0, 0, 1, 1, 0, 0, 4 }, { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 },
+				{ 0, 0, 0, 1, 0, 1, 0, 1, 1, 0 }, { 0, 1, 0, 0, 0, 1, 0, 1, 0, 0 }, { 0, 1, 1, 1, 0, 1, 0, 1, 0, 1 },
+				{ 0, 0, 0, 1, 0, 0, 0, 1, 0, 1 }, { 0, 1, 0, 1, 1, 1, 1, 1, 0, 1 }, { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 1, 1, 1, 0, 1, 1, 1, 1, 0 }, { 5, 0, 0, 0, 0, 0, 0, 0, 0, 3 } };
+
+		map = new Map(level1);
 		player = new Player("bob", map);
 		enemy = new Enemy("Jack-e", map);
 		root.getChildren().add(map);
@@ -54,13 +49,11 @@ public class Game extends Scene {
 		root.getChildren().add(player);
 		root.getChildren().add(enemy);
 
-
-
 	}
 
 	private void initInteractions() {
-//		inters = map.getInters();
-	//	root.getChildren().addAll(inters);
+		inters = map.getInters();
+		root.getChildren().addAll(inters);
 	}
 
 	private void initAnimationTimer() {
@@ -73,24 +66,28 @@ public class Game extends Scene {
 			}
 		};
 	}
-	
+
 	private void checkInteractions() {
 		int size = Map.tileSize;
-		int gridX = (int)player.getX()%size;
-		int gridY = (int)player.getY()%size;
-		for (Interaction i : inters) {
-			int tileX = (int)i.getX()%size;
-			int tileY = (int)i.getY()%size;
-			if(tileX == gridX && tileY == gridY) {
-				i.trigger(player);
+		int gridX = (int) player.getLayoutX() / size;
+		int gridY = (int) player.getLayoutY() / size;
+		try {
+			for (Interaction i : inters) {
+				int tileX = (int) i.getX() / size;
+				int tileY = (int) i.getY() / size;
+				if (tileX == gridX && tileY == gridY) {
+					i.trigger(player);
+					i.clear();
+					inters.remove(i);
+				}
 			}
+		} catch (java.util.ConcurrentModificationException e) {
 		}
 	}
 
 	public void update() {
 		player.update(enemy);
-		//checkInteractions();
-		
+		checkInteractions();
 
 	}
 

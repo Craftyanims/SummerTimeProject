@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -8,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map extends Pane {
 	private Tile[][] grid;
-	private ArrayList<Interaction> inters;
+	private ArrayList<Interaction> inters = new ArrayList<Interaction>();
 	private Tile playerSpawn;
 	private Tile enemySpawn;
 	public static int tileSize;
@@ -47,6 +48,51 @@ public class Map extends Pane {
 
 		levelOne();
 	};
+	
+	/*
+	 * Creates a Map with the specified 2D array layout
+	 */
+	
+	public Map(int[][] layout) {
+		grid = new Tile[layout.length][layout[0].length];
+		tileSize = 39;
+		initGraphics();
+		//For layout: 0=path, 1=wall, 2=playerSpawn, 3=enemySpawn, 4=powerUp, 5=trap
+		//coins go on all path tiles
+		for (int i = 0; i < layout.length; i++) {
+			for (int j = 0; j < layout[0].length; j++) {
+				
+				switch(layout[i][j]) {
+					case 0: // path tile
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						inters.add(new Points(grid[i][j]));
+						break;
+					case 1: //wall tile
+						grid[i][j] = new Tile("Wall", 5 + j*tileSize, 5 + i*tileSize);
+						break;
+					case 2: //player spawn tile
+						grid[i][j] = new Tile("Player Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						break;
+					case 3: //enemy spawn tile
+						grid[i][j] = new Tile("Enemy Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						break;
+					case 4: //powerup
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						inters.add(new SpeedUp(grid[i][j]));
+						break;
+					case 5: //trap
+						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
+						inters.add(new SpeedDown(grid[i][j]));
+						break;
+					default:
+						System.out.println("INVALID LAYOUT!");
+				}
+				getChildren().add(grid[i][j]);
+			}
+		}
+		
+		
+	}
 
 	// ------------------------Getters and Setters---------------------
 
@@ -168,72 +214,97 @@ public class Map extends Pane {
 	 */
 
 	public void levelOne() { // TODO: create a list of coords
-		//TODO Figure out how the fuck ArrayLists work
 		
-		//set Spawn tile
+		//setting Spawn tiles
 		playerSpawn = grid[0][0];
-		grid[0][0].setID("Spawn");
+		grid[0][0].setID("Player Spawn");
 		
-		// Making "Wall" Tiles
-		//ArrayList<Integer[]> wallCoords = new ArrayList<Integer[]>();
-		//wallCoords.add(new Integer[1]);
+		enemySpawn = grid[9][9];
+		grid[9][9].setID("Enemy Spawn");
+		
+		// creating "Wall" tiles
+		ArrayList<Integer[]> wallCoords = new ArrayList<Integer[]>();
+		wallCoords.add(new Integer[] {0,5});
+		wallCoords.add(new Integer[] {0,6});
+		wallCoords.add(new Integer[] {1,1});
+		wallCoords.add(new Integer[] {1,2});
+		wallCoords.add(new Integer[] {1,3});
+		wallCoords.add(new Integer[] {1,8});
+		wallCoords.add(new Integer[] {2,3});
+		wallCoords.add(new Integer[] {2,5});
+		wallCoords.add(new Integer[] {2,7});
+		wallCoords.add(new Integer[] {2,8});
+		wallCoords.add(new Integer[] {3,1});
+		wallCoords.add(new Integer[] {3,5});
+		wallCoords.add(new Integer[] {3,7});
+		wallCoords.add(new Integer[] {4,1});
+		wallCoords.add(new Integer[] {4,2});
+		wallCoords.add(new Integer[] {4,3});
+		wallCoords.add(new Integer[] {4,5});
+		wallCoords.add(new Integer[] {4,7});
+		wallCoords.add(new Integer[] {4,9});
+		wallCoords.add(new Integer[] {5,3});
+		wallCoords.add(new Integer[] {5,7});
+		wallCoords.add(new Integer[] {5,9});
+		wallCoords.add(new Integer[] {6,1});
+		wallCoords.add(new Integer[] {6,3});
+		wallCoords.add(new Integer[] {6,4});
+		wallCoords.add(new Integer[] {6,5});
+		wallCoords.add(new Integer[] {6,6});
+		wallCoords.add(new Integer[] {6,7});
+		wallCoords.add(new Integer[] {6,9});
+		wallCoords.add(new Integer[] {7,1});
+		wallCoords.add(new Integer[] {8,1});
+		wallCoords.add(new Integer[] {8,2});
+		wallCoords.add(new Integer[] {8,3});
+		wallCoords.add(new Integer[] {8,5});
+		wallCoords.add(new Integer[] {8,6});
+		wallCoords.add(new Integer[] {8,7});
+		wallCoords.add(new Integer[] {8,8});
+		setWalls(wallCoords);
 		 
-		grid[0][5].setID("Wall");
-		grid[0][6].setID("Wall");
-		grid[1][1].setID("Wall");
-		grid[1][2].setID("Wall");
-		grid[1][3].setID("Wall");
-		grid[1][8].setID("Wall");
-		grid[2][3].setID("Wall");
-		grid[2][5].setID("Wall");
-		grid[2][7].setID("Wall");
-		grid[2][8].setID("Wall");
-		grid[3][1].setID("Wall");
-		grid[3][5].setID("Wall");
-		grid[3][7].setID("Wall");
-		grid[4][1].setID("Wall");
-		grid[4][2].setID("Wall");
-		grid[4][3].setID("Wall");
-		grid[4][5].setID("Wall");
-		grid[4][7].setID("Wall");
-		grid[4][9].setID("Wall");
-		grid[5][3].setID("Wall");
-		grid[5][7].setID("Wall");
-		grid[5][9].setID("Wall");
-		grid[6][1].setID("Wall");
-		grid[6][3].setID("Wall");
-		grid[6][4].setID("Wall");
-		grid[6][5].setID("Wall");
-		grid[6][6].setID("Wall");
-		grid[6][7].setID("Wall");
-		grid[6][9].setID("Wall");
-		grid[7][1].setID("Wall");
-		grid[8][1].setID("Wall");
-		grid[8][2].setID("Wall");
-		grid[8][3].setID("Wall");
-		grid[8][5].setID("Wall");
-		grid[8][6].setID("Wall");
-		grid[8][7].setID("Wall");
-		grid[8][8].setID("Wall");
+		/*
+		 * grid[0][5].setID("Wall"); grid[0][6].setID("Wall"); grid[1][1].setID("Wall");
+		 * grid[1][2].setID("Wall"); grid[1][3].setID("Wall"); grid[1][8].setID("Wall");
+		 * grid[2][3].setID("Wall"); grid[2][5].setID("Wall"); grid[2][7].setID("Wall");
+		 * grid[2][8].setID("Wall"); grid[3][1].setID("Wall"); grid[3][5].setID("Wall");
+		 * grid[3][7].setID("Wall"); grid[4][1].setID("Wall"); grid[4][2].setID("Wall");
+		 * grid[4][3].setID("Wall"); grid[4][5].setID("Wall"); grid[4][7].setID("Wall");
+		 * grid[4][9].setID("Wall"); grid[5][3].setID("Wall"); grid[5][7].setID("Wall");
+		 * grid[5][9].setID("Wall"); grid[6][1].setID("Wall"); grid[6][3].setID("Wall");
+		 * grid[6][4].setID("Wall"); grid[6][5].setID("Wall"); grid[6][6].setID("Wall");
+		 * grid[6][7].setID("Wall"); grid[6][9].setID("Wall"); grid[7][1].setID("Wall");
+		 * grid[8][1].setID("Wall"); grid[8][2].setID("Wall"); grid[8][3].setID("Wall");
+		 * grid[8][5].setID("Wall"); grid[8][6].setID("Wall"); grid[8][7].setID("Wall");
+		 * grid[8][8].setID("Wall");
+		 */
 		
-		//Creating interactions
-		//inters = new Interaction[3]; //one for speedUp, one for speedDown, one for points
-		//inters[0] = new SpeedUp(grid[9][0]);
-		//inters[1] = new SpeedDown(grid[0][9]);
-		//inters[2] = new Points(grid[5][0]);
+		//Creating Interactions-----------------------------------------------
+		//placing SpeedUps and SpeedDowns on Tiles
+		inters.add(new SpeedUp(grid[9][0]));
+		inters.add(new SpeedDown(grid[0][9]));
+		
+		//placing points onto all the normal tiles
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[0].length; j++) {
+				if (grid[i][j].getID() == "____") {
+					inters.add(new Points(grid[i][j]));
+				} else {
+					continue;
+				}
+			}
+		}
+		
 		
 		// Printing map to console (for testing purposes)
 		// print();
 
 	}
 	
-	public void setWalls(int[][] coord) {
-		for (int i = 0; i < coord.length; i++) {
-			for (int j = 0; j < coord[0].length; j++) {
-				grid[i][j].setID("Wall");
-			}
+	public void setWalls(ArrayList<Integer[]> coords) {
+		for (int i = 0; i < coords.size(); i++) {
+			grid[coords.get(i)[0]][coords.get(i)[1]].setID("Wall");
 		}
-		
 	}
 
 	public void initGraphics() {
