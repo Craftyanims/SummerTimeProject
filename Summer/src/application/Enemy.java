@@ -53,7 +53,7 @@ public class Enemy extends Rectangle{
 		}
 
 		public void setGridX(int x) {
-			this.gridX = x;
+			gridX = x;
 		}
 
 		public int getGridY() {
@@ -61,7 +61,7 @@ public class Enemy extends Rectangle{
 		}
 
 		public void setGridY(int y) {
-			this.gridY = y;
+			gridY = y;
 		}
 		
 		public Map getMap() {
