@@ -73,10 +73,12 @@ public class Game extends Scene {
 		int gridY = (int) player.getLayoutY() / size;
 		try {
 			for (Interaction i : inters) {
-				int tileX = (int) i.getX() / size;
-				int tileY = (int) i.getY() / size;
-				if (tileX == gridX && tileY == gridY) {
-					i.trigger(player);
+//				int tileX = (int) i.getX() / size;
+//				int tileY = (int) i.getY() / size;
+//				if (tileX == gridX && tileY == gridY) {
+//					
+				if(player.getBoundsInParent().intersects(i.getBoundsInParent())) {
+				i.trigger(player);
 					i.clear();
 					inters.remove(i);
 				}
