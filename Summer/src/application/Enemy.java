@@ -16,7 +16,7 @@ public class Enemy extends Rectangle{
 
 	//------------------------------------------------Constructor--------------------------------------------------------
 	/**
-	 * Create a Player with a specific name
+	 * Create an Enemy with a specific name
 	 * 
 	 * @param name
 	 */
@@ -71,4 +71,21 @@ public class Enemy extends Rectangle{
 		public void setMap(Map map) {
 			this.map = map;
 		}
+		
+	//--------------------------------------------Other Functions----------------------------------------------------
+		
+		public void update() {
+			
+			//to add: things to change
+			//change x and y coords
+			//moving in a fixed route
+			//attacking (later thing)
+			
+			
+		}
+		
+		
+		
+		
+		
 }

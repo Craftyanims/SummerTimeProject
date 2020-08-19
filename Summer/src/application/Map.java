@@ -208,12 +208,15 @@ public class Map extends Pane {
 		tile.clear();
 
 	};
+	
+	
+	//TODO: add tutorial levels
 
 	/**
 	 * generates walls for level one then prints out to console
 	 */
 
-	public void levelOne() { // TODO: create a list of coords
+	public void levelOne() { //TODO: read level layout from file (potentially)
 		
 		//setting Spawn tiles
 		playerSpawn = grid[0][0];
