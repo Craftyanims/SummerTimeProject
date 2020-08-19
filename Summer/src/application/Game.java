@@ -88,6 +88,7 @@ public class Game extends Scene {
 	}
 
 	public void update() {
+		enemy.update();
 		player.update(enemy);
 		checkInteractions();
 
