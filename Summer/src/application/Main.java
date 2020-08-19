@@ -18,7 +18,7 @@ public class Main extends Application {
 			Main.root = primaryStage;
 			Game scene = new Game();
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
+			Main.changeSceneTo(scene);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
