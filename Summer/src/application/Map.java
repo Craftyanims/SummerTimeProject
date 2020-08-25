@@ -72,9 +72,11 @@ public class Map extends Pane {
 						break;
 					case 2: //player spawn tile
 						grid[i][j] = new Tile("Player Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						playerSpawn = grid[i][j];
 						break;
 					case 3: //enemy spawn tile
 						grid[i][j] = new Tile("Enemy Spawn", 5 + j*tileSize, 5 + i*tileSize);
+						enemySpawn = grid[i][j];
 						break;
 					case 4: //powerup
 						grid[i][j] = new Tile("    ", 5 + j*tileSize, 5 + i*tileSize);
