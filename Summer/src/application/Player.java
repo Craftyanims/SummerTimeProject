@@ -18,7 +18,6 @@ public class Player extends Rectangle{
 	Tile spawnTile;
 	private int tileSize = 39;
 	private int playerSize = 19;
-	private int borderSize = 5;
 	private KeyCode left;
 	private KeyCode right;
 	private KeyCode up;
