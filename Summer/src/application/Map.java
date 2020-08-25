@@ -54,7 +54,6 @@ public class Map extends Pane {
 	 */
 	
 	public Map(int[][] layout) {
-		
 		grid = new Tile[layout.length][layout[0].length];
 		tileSize = 39;
 		initGraphics();
