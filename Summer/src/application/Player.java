@@ -107,14 +107,17 @@ public class Player extends Rectangle{
 	 */
 	public boolean respawn() {		
 		if ((lives - 1) > 0) {
-			setGridX(spawnTile.getGridX());
-			setGridY(spawnTile.getGridY());
+			setGridX((int)spawnTile.getLayoutX() + ((tileSize - playerSize)/ 2));
+			setGridY((int)spawnTile.getLayoutY() + ((tileSize - playerSize)/ 2));
 			move();
 			return true;
 		}
 		return false;
 	}
 	
+	/**
+	 * Updates the player's location to match its stated X and Y
+	 */
 	public void move() {
 		setLayoutX(gridX);
 		setLayoutY(gridY);
