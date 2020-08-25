@@ -63,13 +63,13 @@ public class Player extends Rectangle{
 	 * @return true if the player is on the same tile as the enemy
 	 */
 	public boolean isDead(Enemy enemy) {
-		if(enemy.getX() == gridX && enemy.getY() == gridY) {
-			//need more
+		boolean hasTouched = false;
+		if(getBoundsInParent().intersects(enemy.getBoundsInParent())) {
+			hasTouched = true;
 			loseALife();
-			isPermDead();
-			return true;
+			System.out.println(isPermDead());
 		}
-		return false;
+		return hasTouched;
 	}
 	
 	/**
@@ -100,9 +100,9 @@ public class Player extends Rectangle{
 	 */
 	public boolean respawn() {		
 		if ((lives - 1) > 0) {
-			loseALife();
 			setGridX(0);
 			setGridY(0);
+			move();
 			return true;
 		}
 		return false;
@@ -198,8 +198,10 @@ public class Player extends Rectangle{
 			}
 		}
 		move();
-		isDead(enemy);
-
+		
+		if(isDead(enemy)) {
+			respawn();
+		}
 	}
 	
 	//-------------------------------------------Getters and Setters----------------------------------------------------
