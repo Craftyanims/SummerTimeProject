@@ -14,14 +14,17 @@ public class Enemy extends Rectangle{
 	private int enemySize = 20;
 	// TODO: path pattern
 
-	//------------------------------------------------Constructor--------------------------------------------------------
+	//------------------------------------------------Constructors--------------------------------------------------------
 	/**
 	 * Create an Enemy with a specific name
 	 * 
-	 * @param name
+	 * @param name 
+	 * @param map 
 	 */
 	public Enemy(String name, Map map) {
 		super(375,375,20,20);
+		//setWidth
+		//setHeight
 		setFill(Color.RED);
 		setName(name);
 		setSpeed(2);
@@ -46,7 +49,6 @@ public class Enemy extends Rectangle{
 		public void setSpeed(int speed) {
 			this.speed = speed;
 		}
-
 
 		public int getGridX() {
 			return gridX;
@@ -75,16 +77,57 @@ public class Enemy extends Rectangle{
 	//--------------------------------------------Other Functions----------------------------------------------------
 		
 		public void update() {
+			move();
 			
 			//to add: things to change
 			//change x and y coords
 			//moving in a fixed route
 			//attacking (later thing)
 			
+		}
+		
+		public void increaseSpeed() {
 			
 		}
 		
+		public void decreaseSpeed() {
+			
+		}
 		
+		public void move() {
+			Tile[][] grid = map.getGrid();
+			Tile nextTileTL;
+			Tile nextTileTR;
+			Tile nextTileBL;
+			Tile nextTileBR;
+			int nextX;
+			int nextY;
+			
+			//first check if enemy can move left
+			System.out.println("Trying to move Enemy left...");
+			nextX = gridX - speed;
+			if(((nextX)/tileSize) < 0 || nextX < 0) {
+				System.out.println("Cannot Move Enemy: Out of bounds");
+			} else {
+				System.out.println("(gridY + enemySize)/tileSize is:" + (gridY - enemySize)/tileSize + " and nextX/tileSize is: " + 
+						nextX/tileSize);
+				nextTileTL = grid[gridY/tileSize][nextX/tileSize];
+				nextTileTR = grid[gridY/tileSize][(nextX - enemySize)/tileSize];
+				nextTileBL = grid[(gridY - enemySize)/tileSize][nextX/tileSize];
+				//TODO: figure out why index is not 9 (adding enemySize gets 10 and subtracting enemySize gets 8?)
+				nextTileBR = grid[(gridY - enemySize)/tileSize][(nextX - enemySize)/tileSize];
+				if (nextTileTL.getID() == "Wall" || nextTileTR.getID() == "Wall" || nextTileBL.getID() == "Wall" || nextTileBR.getID() == "Wall") {
+					System.out.println("Cannot Move Enemy: There is a wall");
+				} else {
+					gridX = nextX;
+					System.out.println("Successfully moved Enemy left");
+				}
+			}
+			
+			setLayoutX(gridX);
+			setLayoutY(gridY);
+			
+		}
 		
 		
 		
