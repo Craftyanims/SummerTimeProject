@@ -14,8 +14,11 @@ public class Player extends Rectangle{
 	private int gridX;
 	private int gridY;
 	private Map map;
+	private Tile[][] grid;
+	Tile spawnTile;
 	private int tileSize = 39;
 	private int playerSize = 19;
+	private int borderSize = 5;
 	private KeyCode left;
 	private KeyCode right;
 	private KeyCode up;
@@ -35,13 +38,17 @@ public class Player extends Rectangle{
 		setLives(3);
 		setAlive(true);
 		setSpeed(2);
-		setGridX(0);
-		setGridY(0);
 		this.map = map;
+		grid = map.getGrid();
 		setLeft(KeyCode.A);
 		setRight(KeyCode.D);
 		setUp(KeyCode.W);
 		setDown(KeyCode.S);
+		spawnTile = map.getPlayerSpawn();
+		setGridX((int)spawnTile.getLayoutX() + ((tileSize - playerSize)/ 2));
+		setGridY((int)spawnTile.getLayoutY() + ((tileSize - playerSize)/ 2));
+		setLayoutX(gridX);
+		setLayoutY(gridY);
 	}
 	
 	//----------------------------------------------------Methods-------------------------------------------------------
@@ -100,8 +107,8 @@ public class Player extends Rectangle{
 	 */
 	public boolean respawn() {		
 		if ((lives - 1) > 0) {
-			setGridX(0);
-			setGridY(0);
+			setGridX(spawnTile.getGridX());
+			setGridY(spawnTile.getGridY());
 			move();
 			return true;
 		}
@@ -114,7 +121,6 @@ public class Player extends Rectangle{
 	}
 	
 	public void update(Enemy enemy) {
-		Tile[][] grid = map.getGrid();
 		Tile nextTileTL;
 		Tile nextTileTR;
 		Tile nextTileBL;
