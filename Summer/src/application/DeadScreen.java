@@ -19,7 +19,7 @@ public class DeadScreen extends Scene{
 		pane.setSpacing(10);
 
 		pane.setAlignment(Pos.CENTER);
-		Label title = new Label("HA YOU DIED LOOSER");
+		Label title = new Label("HA YOU DIED LOWOSER");
 		title.setWrapText(true);
 		title.setTextAlignment(TextAlignment.CENTER);
 		title.setFont(new Font("IMPACT",80));
