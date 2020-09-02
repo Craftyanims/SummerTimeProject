@@ -16,9 +16,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Main.root = primaryStage;
-			MenuScreen scene = new MenuScreen(primaryStage);
+			new MenuScreen(primaryStage);
 //			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			Main.changeSceneTo(scene);
+//			Main.changeSceneTo(new DeadScreen());
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -29,6 +29,10 @@ public class Main extends Application {
 		root.setScene(s);
 		
 	}
+	
+	public static void setMenuScreen() {
+		MenuScreen scene = new MenuScreen(root);		
+	};
 
 	public static void main(String[] args) {
 		testJunk();
