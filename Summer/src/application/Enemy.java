@@ -97,8 +97,6 @@ public class Enemy extends Rectangle{
 		public void move() {
 			moveX(-1); //moves enemy left
 			
-			
-			
 			//setLayoutY(gridY);
 			
 		}
