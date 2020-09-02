@@ -91,7 +91,14 @@ public class Game extends Scene {
 		enemy.update();
 		player.update(enemy);
 		checkInteractions();
-
+		isGameOver();
+	}
+	
+	private void isGameOver() {
+		if(player.isPermDead()) {
+			at.stop();
+			Main.changeSceneTo(new DeadScreen());
+		}
 	}
 
 }
