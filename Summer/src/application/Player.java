@@ -105,7 +105,7 @@ public class Player extends Rectangle{
 	 * @return true if respawn is successful and false otherwise
 	 */
 	public boolean respawn() {		
-		if ((lives - 1) > 0) {
+		if ((lives - 1) >= 0) {
 			setGridX((int)spawnTile.getLayoutX() + ((tileSize - playerSize)/ 2));
 			setGridY((int)spawnTile.getLayoutY() + ((tileSize - playerSize)/ 2));
 			move();
