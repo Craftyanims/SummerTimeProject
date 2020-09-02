@@ -30,10 +30,18 @@ public class Game extends Scene {
 		initAnimationTimer();
 
 		init();
+		initGUI();
 
 		at.start();
 		SpecialKeyboard.init(this);
 	}
+	
+	private void initGUI() {
+		Pane pane = new Pane();
+		
+		
+		root.getChildren().add(pane);
+	};
 
 	private void init() {
 		int level1[][] = { { 2, 0, 0, 0, 0, 1, 1, 0, 0, 4 }, { 0, 1, 1, 1, 0, 0, 0, 0, 1, 0 },
@@ -95,7 +103,7 @@ public class Game extends Scene {
 	}
 	
 	private void isGameOver() {
-		if(player.isPermDead()) {
+		if(!player.isAlive()) {
 			at.stop();
 			Main.changeSceneTo(new DeadScreen());
 		}
