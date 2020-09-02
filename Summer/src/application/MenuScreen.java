@@ -24,7 +24,7 @@ public class MenuScreen {
 
 		startButton.setPrefHeight(51);
 		startButton.setPrefWidth(225);
-		//startButton.setOnAction(e -> new SetUpScreen(stage));
+		startButton.setOnAction(e -> Main.changeSceneTo(new Game()));
 
 		aboutButton.setPrefHeight(51);
 		aboutButton.setPrefWidth(225);
