@@ -46,6 +46,7 @@ public class Game extends Scene {
 	};
 	
 	private void updateLiveCounter() {
+		lc.update(player);
 		int diff = player.getLives() - lc.getTotal();
 		if(diff > 0) {
 			lc.gainLife();

@@ -10,6 +10,7 @@ public class Enemy extends Rectangle{
 	private int gridX;
 	private int gridY;
 	private Map map;
+	Tile spawnTile;
 	private int tileSize = 39;
 	private int enemySize = 20;
 	// TODO: path pattern
@@ -28,9 +29,12 @@ public class Enemy extends Rectangle{
 		setFill(Color.RED);
 		setName(name);
 		setSpeed(2);
-		setGridX((tileSize*10)-enemySize);
-		setGridY((tileSize*10)-enemySize);
 		this.map = map;
+		spawnTile = map.getEnemySpawn();
+		setGridX((int)spawnTile.getLayoutX() + ((tileSize - enemySize)/ 2));
+		setGridY((int)spawnTile.getLayoutY() + ((tileSize - enemySize)/ 2));
+		setLayoutX(gridX);
+		setLayoutY(gridY);
 	}
 	
 	//--------------------------------------------Getters and Setters----------------------------------------------------
@@ -95,9 +99,23 @@ public class Enemy extends Rectangle{
 		}
 		
 		public void move() {
-			moveX(-1); //moves enemy left
+			if (getLayoutX() > -370.0) {
+				//System.out.println(getLayoutX());
+				//gridX = (int)getLayoutX()/tileSize;
+				moveX(-speed); // move enemy left
+				//System.out.println("gridX is: " + gridX);
+			} else if (getLayoutY() > -370.0) {
+				moveY(-speed);
+			}
 			
-			//setLayoutY(gridY);
+			
+			
+			
+			
+			
+			
+			
+			
 			
 		}
 		
