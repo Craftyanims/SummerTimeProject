@@ -51,9 +51,9 @@ public class LiveCounter extends HBox {
 
 	public void update(Player player) {
 		setLayoutX(player.getLayoutX() - (getWidth() - player.getWidth() - 10) / 2);
-		setLayoutY(player.getLayoutY() - 20);
-		if(player.getLayoutY() - 20 <= 0) {
-			setLayoutY(player.getLayoutY() + 10);
+		setLayoutY(player.getLayoutY() - 25);
+		if(player.getLayoutY() - 25 <= 0) {
+			setLayoutY(player.getLayoutY() + 30);
 		}
 		
 	}

@@ -46,7 +46,6 @@ public class Game extends Scene {
 	};
 	
 	private void updateLiveCounter() {
-		//sdfsdf
 		lc.update(player);
 		int diff = player.getLives() - lc.getTotal();
 		if(diff > 0) {
