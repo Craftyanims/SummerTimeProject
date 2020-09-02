@@ -16,9 +16,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Main.root = primaryStage;
-			Game scene = new Game();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			Main.changeSceneTo(scene);
+			MenuScreen scene = new MenuScreen(primaryStage);
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//			Main.changeSceneTo(scene);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
